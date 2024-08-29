@@ -1,6 +1,6 @@
-import PlaceCard from '../components/PlaceCard';
+import OfferCard from '../../components/offer-card/OfferCard';
 
-function RoomPage(): JSX.Element {
+function OfferPage(): JSX.Element {
   return (
     <body>
       <div style={{ 'display': 'none' }}>
@@ -236,7 +236,7 @@ function RoomPage(): JSX.Element {
             <section className="near-places places">
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
               <div className="near-places__list places__list">
-                <PlaceCard
+                <OfferCard
                   name="Wood and stone place"
                   image="img/room.jpg"
                   type="Private room"
@@ -245,7 +245,7 @@ function RoomPage(): JSX.Element {
                   bookmark
                 />
 
-                <PlaceCard
+                <OfferCard
                   name="Canal View Prinsengracht"
                   image="img/apartment-02.jpg"
                   type="Apartment"
@@ -253,7 +253,7 @@ function RoomPage(): JSX.Element {
                   stars={ 4 }
                 />
 
-                <PlaceCard
+                <OfferCard
                   name="Nice, cozy, warm big bed apartment"
                   image="img/apartment-03.jpg"
                   type="Apartment"
@@ -270,4 +270,4 @@ function RoomPage(): JSX.Element {
   );
 }
 
-export default RoomPage;
+export default OfferPage;

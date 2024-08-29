@@ -1,10 +1,10 @@
-import PlaceCard from '../components/PlaceCard';
+import OfferCard from '../../components/offer-card/OfferCard';
 
 type MainProps = {
-  placesCount: number;
+  offersCount: number;
 }
 
-function MainPage(props: MainProps): JSX.Element {
+function MainPage({ offersCount }: MainProps): JSX.Element {
   return (
     <body>
       <div style={{ 'display': 'none' }}>
@@ -82,7 +82,7 @@ function MainPage(props: MainProps): JSX.Element {
             <div className="cities__places-container container">
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
-                <b className="places__found">{ props.placesCount } places to stay in Amsterdam</b>
+                <b className="places__found">{ offersCount } places to stay in Amsterdam</b>
                 <form className="places__sorting" action="#" method="get">
                   <span className="places__sorting-caption">Sort by</span>
                   <span className="places__sorting-type" tabIndex={0}>
@@ -99,9 +99,9 @@ function MainPage(props: MainProps): JSX.Element {
                   </ul>
                 </form>
                 <div className="cities__places-list places__list tabs__content">
-                  {Array(props.placesCount).fill(null).map((item, index) =>
+                  {Array(offersCount).fill(null).map((item, index) =>
                     (
-                      <PlaceCard
+                      <OfferCard
                         key={ 'test' }
                         name="Beautiful &amp; luxurious apartment at great location"
                         image="img/apartment-01.jpg"
@@ -113,7 +113,7 @@ function MainPage(props: MainProps): JSX.Element {
                     )
                   )}
 
-                  {/* <PlaceCard
+                  {/* <OfferCard
                     name="Wood and stone place"
                     image="img/room.jpg"
                     type="Private room"
@@ -122,7 +122,7 @@ function MainPage(props: MainProps): JSX.Element {
                     bookmark
                   />
 
-                  <PlaceCard
+                  <OfferCard
                     name="Canal View Prinsengracht"
                     image="img/apartment-02.jpg"
                     type="Apartment"
@@ -130,7 +130,7 @@ function MainPage(props: MainProps): JSX.Element {
                     stars={ 4 }
                   />
 
-                  <PlaceCard
+                  <OfferCard
                     name="Nice, cozy, warm big bed apartment"
                     image="img/apartment-03.jpg"
                     type="Apartment"

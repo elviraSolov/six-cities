@@ -1,4 +1,4 @@
-type PlaceCardProps = {
+type OfferCardProps = {
   name: string;
   image: string;
   type: string;
@@ -8,7 +8,7 @@ type PlaceCardProps = {
   premium?: boolean;
 }
 
-function PlaceCard(props: PlaceCardProps): JSX.Element {
+function OfferCard(props: OfferCardProps): JSX.Element {
   return (
     <article className="cities__place-card place-card">
       { props.premium && (
@@ -49,4 +49,4 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
   );
 }
 
-export default PlaceCard;
+export default OfferCard;
