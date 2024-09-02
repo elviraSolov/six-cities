@@ -4,6 +4,11 @@ import { Offer } from '../../../types/offer';
 const STARS_COUNT = 5;
 const MAX_PERCENT_STARS_WIDTH = 100;
 
+type OfferCardProps = Offer & {
+  onMouseMove: (id: number) => void;
+  onMouseLeave: () => void;
+}
+
 const OfferCard = ({
   id,
   name,
@@ -13,10 +18,19 @@ const OfferCard = ({
   stars,
   isBookmark,
   isPremium,
-}: Offer): JSX.Element => {
+  onMouseMove,
+  onMouseLeave,
+}: OfferCardProps): JSX.Element => {
+  const handleMouseMove = () => {
+    onMouseMove(id);
+  };
+
   return (
     <Link to={ `offer/${id}` }>
-      <article className="cities__place-card place-card">
+      <article className="cities__place-card place-card"
+        onMouseMove={ handleMouseMove }
+        onMouseLeave={ onMouseLeave }
+      >
         { isPremium && (
           <div className="place-card__mark">
             <span>Premium</span>
