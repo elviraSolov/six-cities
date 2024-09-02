@@ -6,16 +6,17 @@ import OfferPage from '../../pages/offer/OfferPage';
 import NotFoundPage from '../../pages/not-found/NotFoundPage';
 import PrivateRoute from '../private-route/PrivateRoute';
 import { AuthorizationStatus } from '../../const';
+import { Offer } from '../../types/offer';
 
 type AppProps = {
-  offersCount: number;
+  offers: Offer[];
 }
 
-function App({ offersCount }: AppProps): JSX.Element {
+function App({ offers }: AppProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
-        <Route index element={ <MainPage offersCount={ offersCount }/> } />
+        <Route index element={ <MainPage offers={ offers }/> } />
         <Route path="/login" element={ <LoginPage /> } />
         <Route
           path="/favorites"

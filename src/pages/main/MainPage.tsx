@@ -1,10 +1,11 @@
-import OfferCard from '../../components/offer-card/OfferCard';
+import { Offer } from '../../types/offer';
+import OffersList from '../../components/offers-list/OffersList';
 
 type MainProps = {
-  offersCount: number;
+  offers: Offer[];
 }
 
-function MainPage({ offersCount }: MainProps): JSX.Element {
+function MainPage({ offers }: MainProps): JSX.Element {
   return (
     <body>
       <div style={{ 'display': 'none' }}>
@@ -82,7 +83,7 @@ function MainPage({ offersCount }: MainProps): JSX.Element {
             <div className="cities__places-container container">
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
-                <b className="places__found">{ offersCount } places to stay in Amsterdam</b>
+                <b className="places__found">{ offers.length } places to stay in Amsterdam</b>
                 <form className="places__sorting" action="#" method="get">
                   <span className="places__sorting-caption">Sort by</span>
                   <span className="places__sorting-type" tabIndex={0}>
@@ -98,47 +99,7 @@ function MainPage({ offersCount }: MainProps): JSX.Element {
                     <li className="places__option" tabIndex={0}>Top rated first</li>
                   </ul>
                 </form>
-                <div className="cities__places-list places__list tabs__content">
-                  {Array(offersCount).fill(null).map((item, index) =>
-                    (
-                      <OfferCard
-                        key={ 'test' }
-                        name="Beautiful &amp; luxurious apartment at great location"
-                        image="img/apartment-01.jpg"
-                        type="Apartment"
-                        price={ 120 }
-                        stars={ 4 }
-                        premium
-                      />
-                    )
-                  )}
-
-                  {/* <OfferCard
-                    name="Wood and stone place"
-                    image="img/room.jpg"
-                    type="Private room"
-                    price={ 80 }
-                    stars={ 4 }
-                    bookmark
-                  />
-
-                  <OfferCard
-                    name="Canal View Prinsengracht"
-                    image="img/apartment-02.jpg"
-                    type="Apartment"
-                    price={ 132 }
-                    stars={ 4 }
-                  />
-
-                  <OfferCard
-                    name="Nice, cozy, warm big bed apartment"
-                    image="img/apartment-03.jpg"
-                    type="Apartment"
-                    price={ 180 }
-                    stars={ 5 }
-                    premium
-                  /> */}
-                </div>
+                <OffersList offers={ offers } />
               </section>
               <div className="cities__right-section">
                 <section className="cities__map map"></section>

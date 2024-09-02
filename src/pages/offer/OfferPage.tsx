@@ -1,4 +1,4 @@
-import OfferCard from '../../components/offer-card/OfferCard';
+import OfferCard from '../../components/offers-list/offer-card/OfferCard';
 
 function OfferPage(): JSX.Element {
   return (
@@ -242,7 +242,7 @@ function OfferPage(): JSX.Element {
                   type="Private room"
                   price={ 80 }
                   stars={ 4 }
-                  bookmark
+                  isBookmark
                 />
 
                 <OfferCard
@@ -259,7 +259,7 @@ function OfferPage(): JSX.Element {
                   type="Apartment"
                   price={ 180 }
                   stars={ 5 }
-                  premium
+                  isPremium
                 />
               </div>
             </section>

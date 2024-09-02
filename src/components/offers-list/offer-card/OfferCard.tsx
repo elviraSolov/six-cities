@@ -4,14 +4,14 @@ type OfferCardProps = {
   type: string;
   price: number;
   stars: number;
-  bookmark?: boolean;
-  premium?: boolean;
+  isBookmark?: boolean;
+  isPremium?: boolean;
 }
 
 function OfferCard(props: OfferCardProps): JSX.Element {
   return (
     <article className="cities__place-card place-card">
-      { props.premium && (
+      { props.isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
@@ -27,11 +27,11 @@ function OfferCard(props: OfferCardProps): JSX.Element {
             <b className="place-card__price-value">&euro;{ props.price }</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className={`place-card__bookmark-button button ${ props.bookmark ? 'place-card__bookmark-button--active' : '' }`} type="button">
+          <button className={`place-card__bookmark-button button ${ props.isBookmark ? 'place-card__bookmark-button--active' : '' }`} type="button">
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
-            <span className="visually-hidden">{ props.bookmark ? 'In bookmarks' : 'To bookmarks'}</span>
+            <span className="visually-hidden">{ props.isBookmark ? 'In bookmarks' : 'To bookmarks'}</span>
           </button>
         </div>
         <div className="place-card__rating rating">
