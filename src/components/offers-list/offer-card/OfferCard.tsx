@@ -1,52 +1,59 @@
-type OfferCardProps = {
-  name: string;
-  image: string;
-  type: string;
-  price: number;
-  stars: number;
-  isBookmark?: boolean;
-  isPremium?: boolean;
-}
+import { Link } from 'react-router-dom';
+import { Offer } from '../../../types/offer';
 
-function OfferCard(props: OfferCardProps): JSX.Element {
+const STARS_COUNT = 5;
+const MAX_PERCENT_STARS_WIDTH = 100;
+
+const OfferCard = ({
+  id,
+  name,
+  image,
+  type,
+  price,
+  stars,
+  isBookmark,
+  isPremium,
+}: Offer): JSX.Element => {
   return (
-    <article className="cities__place-card place-card">
-      { props.isPremium && (
-        <div className="place-card__mark">
-          <span>Premium</span>
-        </div>
-      )}
-      <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="#">
-          <img className="place-card__image" src={ props.image } width="260" height="200" alt="Place image" />
-        </a>
-      </div>
-      <div className="place-card__info">
-        <div className="place-card__price-wrapper">
-          <div className="place-card__price">
-            <b className="place-card__price-value">&euro;{ props.price }</b>
-            <span className="place-card__price-text">&#47;&nbsp;night</span>
+    <Link to={ `offer/${id}` }>
+      <article className="cities__place-card place-card">
+        { isPremium && (
+          <div className="place-card__mark">
+            <span>Premium</span>
           </div>
-          <button className={`place-card__bookmark-button button ${ props.isBookmark ? 'place-card__bookmark-button--active' : '' }`} type="button">
-            <svg className="place-card__bookmark-icon" width="18" height="19">
-              <use xlinkHref="#icon-bookmark"></use>
-            </svg>
-            <span className="visually-hidden">{ props.isBookmark ? 'In bookmarks' : 'To bookmarks'}</span>
-          </button>
+        )}
+        <div className="cities__image-wrapper place-card__image-wrapper">
+          <a href="#">
+            <img className="place-card__image" src={ image } width="260" height="200" alt="Place image" />
+          </a>
         </div>
-        <div className="place-card__rating rating">
-          <div className="place-card__stars rating__stars">
-            <span style={{ 'width': `${20 * props.stars}%` }}></span>
-            <span className="visually-hidden">Rating</span>
+        <div className="place-card__info">
+          <div className="place-card__price-wrapper">
+            <div className="place-card__price">
+              <b className="place-card__price-value">&euro;{ price }</b>
+              <span className="place-card__price-text">&#47;&nbsp;night</span>
+            </div>
+            <button className={`place-card__bookmark-button button ${ isBookmark ? 'place-card__bookmark-button--active' : '' }`} type="button">
+              <svg className="place-card__bookmark-icon" width="18" height="19">
+                <use xlinkHref="#icon-bookmark"></use>
+              </svg>
+              <span className="visually-hidden">{ isBookmark ? 'In bookmarks' : 'To bookmarks'}</span>
+            </button>
           </div>
+          <div className="place-card__rating rating">
+            <div className="place-card__stars rating__stars">
+              <span style={{ 'width': `${(MAX_PERCENT_STARS_WIDTH * stars) / STARS_COUNT}%` }}></span>
+              <span className="visually-hidden">Rating</span>
+            </div>
+          </div>
+          <h2 className="place-card__name">
+            <a href="#">{ name }</a>
+          </h2>
+          <p className="place-card__type">{ type }</p>
         </div>
-        <h2 className="place-card__name">
-          <a href="#">{ props.name }</a>
-        </h2>
-        <p className="place-card__type">{ props.type }</p>
-      </div>
-    </article>
+      </article>
+    </Link>
   );
-}
+};
 
 export default OfferCard;
