@@ -72,8 +72,8 @@ function FavoritesPage({offers}: FavoritesProps): JSX.Element {
             <section className="favorites">
               <h1 className="favorites__title">Saved listing</h1>
               <ul className="favorites__list">
-                {Object.entries(offersByCity).map(([city, groupedOffers]) => {
-                  return (
+                {Object.entries(offersByCity).map(([city, groupedOffers]) =>
+                  (
                     <li className="favorites__locations-items" key={ city }>
                       <div className="favorites__locations locations locations--current">
                         <div className="locations__item">
@@ -83,8 +83,8 @@ function FavoritesPage({offers}: FavoritesProps): JSX.Element {
                         </div>
                       </div>
                       <div className="favorites__places">
-                        {groupedOffers.map((offer) => {
-                          return (
+                        {groupedOffers.map((offer) =>
+                          (
                             <OfferCard
                               key={ offer.id }
                               {...offer}
@@ -92,12 +92,12 @@ function FavoritesPage({offers}: FavoritesProps): JSX.Element {
                               onMouseMove={handleCardMouseMove}
                               onMouseLeave={handleCardMouseLeave}
                             />
-                          );
-                        })}
+                          )
+                        )}
                       </div>
                     </li>
-                  );
-                })}
+                  )
+                )}
               </ul>
             </section>
           </div>
