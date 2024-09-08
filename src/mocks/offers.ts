@@ -12,6 +12,7 @@ export const offers: Offer[] = [
       name: 'Amsterdam',
     },
     isPremium: true,
+    isBookmark: true,
   },
   {
     id: 2,
@@ -47,5 +48,6 @@ export const offers: Offer[] = [
       name: 'Amsterdam',
     },
     isPremium: true,
+    isBookmark: true,
   },
 ];
