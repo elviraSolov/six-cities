@@ -14,6 +14,7 @@ export type Offer = {
   location: Location;
   city: {
     name: CityName;
+    location: Location;
   };
   reviews?: Review[];
 };

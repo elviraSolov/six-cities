@@ -8,12 +8,14 @@
       "@pages": ["pages"],
       "@store": ["store"],
       "@const": ["const"],
+      "@utils": ["utils"],
       "@components/*": ["components/*"],
       "@hooks/*": ["hooks/*"],
       "@mocks/*": ["mocks/*"],
       "@pages/*": ["pages/*"],
       "@store/*": ["store/*"],
-      "@const/*": ["const/*"]
+      "@const/*": ["const/*"],
+      "@utils/*": ["utils/*"]
     }
   }
 }

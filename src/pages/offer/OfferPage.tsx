@@ -2,9 +2,10 @@ import { useParams } from 'react-router-dom';
 import { OFFERS } from '@mocks/offers';
 import { Offer } from 'types/offer';
 // import NotFoundPage from '@pages/not-found/NotFoundPage';
-import CommentForm from '@components/comment-form/CommentForm';
 import ReviewsList from '@components/reviews-list/ReviewsList';
-import { Fragment } from 'react';
+import { useState } from 'react';
+import Map from '@components/map/Map';
+import { Location } from 'types/city';
 
 function OfferPage(): JSX.Element {
   const params = useParams();
@@ -13,6 +14,12 @@ function OfferPage(): JSX.Element {
 
   const STARS_COUNT = 5;
   const MAX_PERCENT_STARS_WIDTH = 100;
+
+  const [selectedPoint, setSelectedPoint] = useState<Location | undefined>(undefined);
+
+  const onPointHover = (point: Location) => {
+    setSelectedPoint(point);
+  };
 
   return (
     <body>
@@ -156,54 +163,25 @@ function OfferPage(): JSX.Element {
                       </p>
                     </div>
                   </div>
-                  <section className="property__reviews reviews">
-                    {/* eslint-disable-next-line */}
-                    {offer.reviews && offer.reviews.length > 0 && (
-                      <Fragment>
-                        {/* eslint-disable-next-line */}
-                        <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{offer.reviews.length}</span></h2>
-                        {/* eslint-disable-next-line */}
-                        <ReviewsList reviews={offer.reviews} />
-                      </Fragment>
-                    )}
-                    <CommentForm />
-                  </section>
+                  {
+                    offer.reviews && (<ReviewsList reviews={offer.reviews} />)
+                  }
                 </div>
               </div>
-              <section className="property__map map"></section>
+              <section style={{height: '400px'}}>
+                <Map
+                  city={offer.city}
+                  points={[offer.location]}
+                  selectedPoint={selectedPoint}
+                  onPointHover={onPointHover}
+                />
+              </section>
             </section>
             <div className="container">
               <section className="near-places places">
                 <h2 className="near-places__title">Other places in the neighbourhood</h2>
                 <div className="near-places__list places__list">
-                  {/* <OfferCard
-                    id={ 2 }
-                    name="Wood and stone place"
-                    image="img/room.jpg"
-                    type="Room"
-                    price={ 80 }
-                    stars={ 4 }
-                    isBookmark
-                  />
 
-                  <OfferCard
-                    id={ 3 }
-                    name="Canal View Prinsengracht"
-                    image="img/apartment-02.jpg"
-                    type="Apartment"
-                    price={ 132 }
-                    stars={ 4 }
-                  />
-
-                  <OfferCard
-                    id={ 4 }
-                    name="Nice, cozy, warm big bed apartment"
-                    image="img/apartment-03.jpg"
-                    type="Apartment"
-                    price={ 180 }
-                    stars={ 5 }
-                    isPremium
-                  /> */}
                 </div>
               </section>
             </div>

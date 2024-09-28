@@ -1,8 +1,14 @@
+export type User = {
+  id: number;
+  name: string;
+  avatarUrl: string;
+  isPro: boolean;
+}
+
 export type Review = {
   id: number;
-  authorName: string;
-  authorAvatar: string;
-  estimation: number;
-  date: Date;
-  reviewText: string;
+  user: User;
+  date: string;
+  rating: number;
+  review: string;
 }

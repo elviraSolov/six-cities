@@ -10,6 +10,11 @@ export const OFFERS: Offer[] = [
     stars: 4,
     city: {
       name: 'Amsterdam',
+      location: {
+        lat: 52.3909553943508,
+        lng: 4.85309666406198,
+        zoom: 10,
+      },
     },
     location: {
       lat: 52.3909553943508,
@@ -21,20 +26,16 @@ export const OFFERS: Offer[] = [
     reviews: [
       {
         id: 1,
-        authorName: 'Max',
-        authorAvatar: 'img/avatar-max.jpg',
-        estimation: 4,
-        date: new Date(),
-        reviewText: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.',
+        user: {
+          id: 1,
+          name: 'Max',
+          avatarUrl: 'img/avatar-max.jpg',
+          isPro: true,
+        },
+        rating: 4,
+        date: '2019-04-24',
+        review: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.',
       },
-      {
-        id: 1,
-        authorName: 'Angelina',
-        authorAvatar: 'img/avatar-angelina.jpg',
-        estimation: 4,
-        date: new Date(),
-        reviewText: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.',
-      }
     ],
   },
   {
@@ -46,6 +47,11 @@ export const OFFERS: Offer[] = [
     stars: 4,
     city: {
       name: 'Paris',
+      location: {
+        lat: 52.3909553943508,
+        lng: 4.85309666406198,
+        zoom: 10,
+      },
     },
     location: {
       lat: 52.3609553943508,
@@ -56,11 +62,15 @@ export const OFFERS: Offer[] = [
     reviews: [
       {
         id: 1,
-        authorName: 'Max',
-        authorAvatar: 'img/avatar-max.jpg',
-        estimation: 4,
-        date: new Date(),
-        reviewText: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.',
+        user: {
+          id: 1,
+          name: 'Max',
+          avatarUrl: 'img/avatar-max.jpg',
+          isPro: true,
+        },
+        rating: 4,
+        date: '2019-04-24',
+        review: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.',
       }
     ],
   },
@@ -73,6 +83,11 @@ export const OFFERS: Offer[] = [
     stars: 4,
     city: {
       name: 'Paris',
+      location: {
+        lat: 52.3909553943508,
+        lng: 4.85309666406198,
+        zoom: 10,
+      },
     },
     location: {
       lat: 52.3909553943508,
@@ -82,11 +97,15 @@ export const OFFERS: Offer[] = [
     reviews: [
       {
         id: 1,
-        authorName: 'Max',
-        authorAvatar: 'img/avatar-max.jpg',
-        estimation: 4,
-        date: new Date(),
-        reviewText: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.',
+        user: {
+          id: 1,
+          name: 'Max',
+          avatarUrl: 'img/avatar-max.jpg',
+          isPro: true,
+        },
+        rating: 4,
+        date: '2019-04-24',
+        review: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.',
       }
     ],
   },
@@ -99,6 +118,11 @@ export const OFFERS: Offer[] = [
     stars: 5,
     city: {
       name: 'Amsterdam',
+      location: {
+        lat: 52.3909553943508,
+        lng: 4.85309666406198,
+        zoom: 10,
+      },
     },
     location: {
       lat: 52.3809553943508,
@@ -110,11 +134,15 @@ export const OFFERS: Offer[] = [
     reviews: [
       {
         id: 1,
-        authorName: 'Max',
-        authorAvatar: 'img/avatar-max.jpg',
-        estimation: 4,
-        date: new Date(),
-        reviewText: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.',
+        user: {
+          id: 1,
+          name: 'Max',
+          avatarUrl: 'img/avatar-max.jpg',
+          isPro: true,
+        },
+        rating: 4,
+        date: '2019-04-24',
+        review: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.',
       }
     ],
   },
