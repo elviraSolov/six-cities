@@ -1,5 +1,6 @@
 import { CityName, Location } from "types/city";
 import { offerType } from "@const";
+import { Review } from "./review";
 
 export type Offer = {
   id: number;
@@ -14,4 +15,5 @@ export type Offer = {
   city: {
     name: CityName;
   };
+  reviews?: Review[];
 };
