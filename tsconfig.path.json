@@ -7,14 +7,12 @@
       "@mocks": ["mocks"],
       "@pages": ["pages"],
       "@store": ["store"],
-      "@types": ["types"],
       "@const": ["const"],
       "@components/*": ["components/*"],
       "@hooks/*": ["hooks/*"],
       "@mocks/*": ["mocks/*"],
       "@pages/*": ["pages/*"],
       "@store/*": ["store/*"],
-      "@types/*": ["types/*"],
       "const/*": ["const/*"]
     }
   }

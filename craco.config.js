@@ -10,7 +10,6 @@ module.exports = {
       '@mocks': path.resolve(__dirname, 'src/mocks'),
       '@pages': path.resolve(__dirname, 'src/pages'),
       '@store': path.resolve(__dirname, 'src/store'),
-      '@types': path.resolve(__dirname, 'src/type'),
       'const': path.resolve(__dirname, 'src/const')
     }
   },
