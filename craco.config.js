@@ -10,7 +10,7 @@ module.exports = {
       '@mocks': path.resolve(__dirname, 'src/mocks'),
       '@pages': path.resolve(__dirname, 'src/pages'),
       '@store': path.resolve(__dirname, 'src/store'),
-      'const': path.resolve(__dirname, 'src/const')
+      '@const': path.resolve(__dirname, 'src/const')
     }
   },
   jest: {

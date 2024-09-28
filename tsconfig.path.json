@@ -13,7 +13,7 @@
       "@mocks/*": ["mocks/*"],
       "@pages/*": ["pages/*"],
       "@store/*": ["store/*"],
-      "const/*": ["const/*"]
+      "@const/*": ["const/*"]
     }
   }
 }

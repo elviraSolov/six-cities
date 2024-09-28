@@ -5,20 +5,22 @@ import FavoritesPage from '@pages/favorites/FavoritesPage';
 import OfferPage from '@pages/offer/OfferPage';
 import NotFoundPage from '@pages/not-found/NotFoundPage';
 import PrivateRoute from '@components/private-route/PrivateRoute';
-import { AppRoute, AuthorizationStatus } from 'const';
+import { AppRoute, AuthorizationStatus } from '@const';
 import { Offer } from 'types/offer';
+import { City } from 'types/city';
 
 type AppProps = {
   offers: Offer[];
+  city: City;
 }
 
-function App({ offers }: AppProps): JSX.Element {
+function App({ city, offers }: AppProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           index
-          element={<MainPage offers={offers}/>}
+          element={<MainPage city={city} offers={offers}/>}
         />
         <Route
           path={AppRoute.Login}

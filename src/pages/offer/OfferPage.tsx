@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { offers } from '@mocks/offers';
+import { OFFERS } from '@mocks/offers';
 import { Offer } from 'types/offer';
 import NotFoundPage from '@pages/not-found/NotFoundPage';
 import CommentForm from '@components/comment-form/CommentForm';
@@ -7,7 +7,7 @@ import CommentForm from '@components/comment-form/CommentForm';
 function OfferPage(): JSX.Element {
   const params = useParams();
 
-  const offer = offers.find((item: Offer) => item.id.toString() === params.id);
+  const offer = OFFERS.find((item: Offer) => item.id.toString() === params.id);
 
   const STARS_COUNT = 5;
   const MAX_PERCENT_STARS_WIDTH = 100;

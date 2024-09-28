@@ -1,18 +1,21 @@
 import { Offer } from 'types/offer';
 import OffersList from '@components/offers-list/OffersList';
 import Map from '@components/map/Map';
-import { CITY } from '@mocks/city';
-import { POINTS } from '@mocks/points';
-import { Point } from 'types/point';
 import { useState } from 'react';
+import { City, Location } from 'types/city';
 
 type MainProps = {
+  city: City;
   offers: Offer[];
 }
 
-function MainPage({ offers }: MainProps): JSX.Element {
+function MainPage({ city, offers }: MainProps): JSX.Element {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [selectedPoint, setSelectedPoint] = useState<Point | undefined>(undefined);
+  const [selectedPoint, setSelectedPoint] = useState<Location | undefined>(undefined);
+
+  const onPointHover = (point: Location) => {
+    setSelectedPoint(point);
+  };
 
   return (
     <body>
@@ -91,7 +94,7 @@ function MainPage({ offers }: MainProps): JSX.Element {
             <div className="cities__places-container container">
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
-                <b className="places__found">{ offers.length } places to stay in Amsterdam</b>
+                <b className="places__found">{offers.length} places to stay in Amsterdam</b>
                 <form className="places__sorting" action="#" method="get">
                   <span className="places__sorting-caption">Sort by</span>
                   <span className="places__sorting-type" tabIndex={0}>
@@ -107,12 +110,14 @@ function MainPage({ offers }: MainProps): JSX.Element {
                     <li className="places__option" tabIndex={0}>Top rated first</li>
                   </ul>
                 </form>
-                <OffersList offers={ offers } />
+                <OffersList offers={offers} />
               </section>
               <Map
-                city={CITY}
-                points={POINTS}
+                city={city}
+                // eslint-disable-next-line
+                points={offers.map((offer: Offer) => offer.location)}
                 selectedPoint={selectedPoint}
+                onPointHover={onPointHover}
               />
             </div>
           </div>

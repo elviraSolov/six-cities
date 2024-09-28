@@ -1,15 +1,16 @@
 import { useRef, useEffect } from 'react';
-import { Point } from 'types/point';
 import { City } from 'types/city';
 import useMap from '@hooks/useMap';
 import 'leaflet/dist/leaflet.css';
 import { Icon, layerGroup, Marker } from 'leaflet';
-import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from 'const';
+import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '@const';
+import { Location } from 'types/city';
 
 type MapProps = {
   city: City;
-  points: Array<Point>;
-  selectedPoint?: Point;
+  points: Location[];
+  selectedPoint?: Location;
+  onPointHover: (point: Location) => void;
 }
 
 const defaultCustomIcon = new Icon({
@@ -24,7 +25,7 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
-function Map({points, selectedPoint, city}: MapProps): JSX.Element {
+function Map({points, selectedPoint, city, onPointHover}: MapProps): JSX.Element {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
@@ -39,11 +40,13 @@ function Map({points, selectedPoint, city}: MapProps): JSX.Element {
 
         marker
           .setIcon(
-            selectedPoint !== undefined && point.title === selectedPoint.title
+            selectedPoint !== undefined && point === selectedPoint
               ? currentCustomIcon
               : defaultCustomIcon
           )
           .addTo(markerLayer);
+
+        marker.on('mouseover', () => onPointHover(point));
       });
 
       return () => {
