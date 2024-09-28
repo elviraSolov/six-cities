@@ -6,6 +6,7 @@ import ReviewsList from '@components/reviews-list/ReviewsList';
 import { useState } from 'react';
 import Map from '@components/map/Map';
 import { Location } from 'types/city';
+import OfferCard from '@components/offers-list/offer-card/OfferCard';
 
 function OfferPage(): JSX.Element {
   const params = useParams();
@@ -20,6 +21,10 @@ function OfferPage(): JSX.Element {
   const onPointHover = (point: Location) => {
     setSelectedPoint(point);
   };
+
+  const handleCardMouseMove = (id: number) => id;
+
+  const handleCardMouseLeave = () => '';
 
   return (
     <body>
@@ -168,20 +173,28 @@ function OfferPage(): JSX.Element {
                   }
                 </div>
               </div>
-              <section style={{height: '400px'}}>
-                <Map
-                  city={offer.city}
-                  points={[offer.location]}
-                  selectedPoint={selectedPoint}
-                  onPointHover={onPointHover}
-                />
-              </section>
+              <Map
+                city={offer.city}
+                points={[offer.location]}
+                selectedPoint={selectedPoint}
+                onPointHover={onPointHover}
+                mapClass={'property__map'}
+              />
             </section>
             <div className="container">
               <section className="near-places places">
                 <h2 className="near-places__title">Other places in the neighbourhood</h2>
                 <div className="near-places__list places__list">
-
+                  {OFFERS.map((item) =>
+                    (
+                      <OfferCard
+                        key={item.id}
+                        {...item}
+                        onMouseMove={handleCardMouseMove}
+                        onMouseLeave={handleCardMouseLeave}
+                      />
+                    )
+                  )}
                 </div>
               </section>
             </div>

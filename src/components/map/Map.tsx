@@ -10,6 +10,7 @@ type MapProps = {
   points: Location[];
   selectedPoint?: Location;
   onPointHover: (point: Location) => void;
+  mapClass: string;
 }
 
 const defaultCustomIcon = new Icon({
@@ -24,7 +25,7 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
-function Map({points, selectedPoint, city, onPointHover}: MapProps): JSX.Element {
+function Map({points, selectedPoint, city, onPointHover, mapClass}: MapProps): JSX.Element {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
@@ -56,7 +57,7 @@ function Map({points, selectedPoint, city, onPointHover}: MapProps): JSX.Element
 
   return (
     <div
-      className="cities__right-section"
+      className={`${mapClass}`}
       ref={mapRef}
     />
   );

@@ -118,6 +118,7 @@ function MainPage({ city, offers }: MainProps): JSX.Element {
                 points={offers.map((offer: Offer) => offer.location)}
                 selectedPoint={selectedPoint}
                 onPointHover={onPointHover}
+                mapClass={'cities__right-section'}
               />
             </div>
           </div>
