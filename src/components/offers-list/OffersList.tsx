@@ -20,10 +20,10 @@ function OffersList({ offers }: OffersListProps): JSX.Element {
 
   return (
     <div className="cities__places-list places__list tabs__content">
-      { offers.map((offer) =>
+      {offers.map((offer) =>
         (
           <OfferCard
-            key={ offer.id }
+            key={offer.id}
             {...offer}
             onMouseMove={handleCardMouseMove}
             onMouseLeave={handleCardMouseLeave}

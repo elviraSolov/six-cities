@@ -1,11 +1,19 @@
 import { Offer } from '../../types/offer';
 import OffersList from '../../components/offers-list/OffersList';
+import Map from '../../components/map/Map';
+import { CITY } from '../../mocks/city';
+import { POINTS } from '../../mocks/points';
+import { Point } from '../../types/point';
+import { useState } from 'react';
 
 type MainProps = {
   offers: Offer[];
 }
 
 function MainPage({ offers }: MainProps): JSX.Element {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [selectedPoint, setSelectedPoint] = useState<Point | undefined>(undefined);
+
   return (
     <body>
       <div style={{ 'display': 'none' }}>
@@ -101,9 +109,11 @@ function MainPage({ offers }: MainProps): JSX.Element {
                 </form>
                 <OffersList offers={ offers } />
               </section>
-              <div className="cities__right-section">
-                <section className="cities__map map"></section>
-              </div>
+              <Map
+                city={CITY}
+                points={POINTS}
+                selectedPoint={selectedPoint}
+              />
             </div>
           </div>
         </main>
