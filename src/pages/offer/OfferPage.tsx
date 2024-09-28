@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
-import { offers } from '../../mocks/offers';
-import { Offer } from '../../types/offer';
-import NotFoundPage from '../not-found/NotFoundPage';
-import CommentForm from '../../components/comment-form/CommentForm';
+import { offers } from '@mocks/offers';
+import { Offer } from 'types/offer';
+import NotFoundPage from '@pages/not-found/NotFoundPage';
+import CommentForm from '@components/comment-form/CommentForm';
 
 function OfferPage(): JSX.Element {
   const params = useParams();

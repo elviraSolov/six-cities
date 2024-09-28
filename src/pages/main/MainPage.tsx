@@ -1,9 +1,9 @@
-import { Offer } from '../../types/offer';
-import OffersList from '../../components/offers-list/OffersList';
-import Map from '../../components/map/Map';
-import { CITY } from '../../mocks/city';
-import { POINTS } from '../../mocks/points';
-import { Point } from '../../types/point';
+import { Offer } from 'types/offer';
+import OffersList from '@components/offers-list/OffersList';
+import Map from '@components/map/Map';
+import { CITY } from '@mocks/city';
+import { POINTS } from '@mocks/points';
+import { Point } from 'types/point';
 import { useState } from 'react';
 
 type MainProps = {

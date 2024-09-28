@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Offer } from '../../../types/offer';
+import { Offer } from 'types/offer';
 
 const STARS_COUNT = 5;
 const MAX_PERCENT_STARS_WIDTH = 100;

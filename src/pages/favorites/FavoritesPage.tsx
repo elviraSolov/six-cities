@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import OfferCard from '../../components/offers-list/offer-card/OfferCard';
-import { Offer } from '../../types/offer';
+import OfferCard from '@components/offers-list/offer-card/OfferCard';
+import { Offer } from 'types/offer';
 
 type FavoritesProps = {
   offers: Offer[];

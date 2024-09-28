@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@craco/craco": "^7.1.0",
     "@reduxjs/toolkit": "^1.8.6",
     "@types/leaflet": "^1.9.12",
     "axios": "^0.27.2",
@@ -12,12 +13,13 @@
     "react-dom": "^18.3.1",
     "react-redux": "^8.0.4",
     "react-router-dom": "^6.4.2",
-    "react-scripts": "5.0.1"
+    "react-scripts": "5.0.1",
+    "ts-jest": "^29.2.5"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --passWithNoTests",
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test --passWithNoTests",
     "eject": "react-scripts eject",
     "lint": "eslint --ext .tsx --ext .ts src/"
   },
@@ -76,5 +78,6 @@
     "eslint-config-htmlacademy": "^8.0.0",
     "faker": "^5.5.3",
     "typescript": "^4.8.4"
-  }
+  },
+  "cracoConfig": "craco.config.js"
 }

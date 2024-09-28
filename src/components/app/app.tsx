@@ -1,12 +1,12 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import MainPage from '../../pages/main/MainPage';
-import LoginPage from '../../pages/login/LoginPage';
-import FavoritesPage from '../../pages/favorites/FavoritesPage';
-import OfferPage from '../../pages/offer/OfferPage';
-import NotFoundPage from '../../pages/not-found/NotFoundPage';
-import PrivateRoute from '../private-route/PrivateRoute';
-import { AppRoute, AuthorizationStatus } from '../../const';
-import { Offer } from '../../types/offer';
+import MainPage from '@pages/main/MainPage';
+import LoginPage from '@pages/login/LoginPage';
+import FavoritesPage from '@pages/favorites/FavoritesPage';
+import OfferPage from '@pages/offer/OfferPage';
+import NotFoundPage from '@pages/not-found/NotFoundPage';
+import PrivateRoute from '@components/private-route/PrivateRoute';
+import { AppRoute, AuthorizationStatus } from 'const';
+import { Offer } from 'types/offer';
 
 type AppProps = {
   offers: Offer[];
