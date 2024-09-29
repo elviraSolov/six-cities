@@ -28,7 +28,7 @@ const OfferCard = ({
   };
 
   return (
-    <Link to={`offer/${id}` } className={`${place === 'favorites' ? 'favorites__locations-items' : ''}`}>
+    <Link to={`/offer/${id}` } className={`${place === 'favorites' ? 'favorites__locations-items' : ''}`}>
       <article className={`place-card ${place === 'favorites' ? 'favorites__card' : 'cities__place-card'}`}
         onMouseMove={handleMouseMove}
         onMouseLeave={onMouseLeave}
