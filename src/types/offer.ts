@@ -1,6 +1,20 @@
 import { CityName, Location } from "types/city";
 import { offerType } from "@const";
-import { Review } from "./review";
+
+export type User = {
+  id: number;
+  name: string;
+  avatarUrl: string;
+  isPro: boolean;
+}
+
+export type Review = {
+  id: number;
+  user: User;
+  date: string;
+  rating: number;
+  review: string;
+}
 
 export type Offer = {
   id: number;

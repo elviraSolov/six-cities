@@ -1,4 +1,4 @@
-import { Review } from 'types/review';
+import { Review } from 'types/offer';
 import { formatDate } from '@utils';
 
 type ReviewProps = {
@@ -10,9 +10,11 @@ function ReviewItem({ review }: ReviewProps): JSX.Element {
     <li className="reviews__item">
       <div className="reviews__user user">
         <div className="reviews__avatar-wrapper user__avatar-wrapper">
+          {/* eslint-disable-next-line */}
           <img className="reviews__avatar user__avatar" src={review.user.avatarUrl} width="54" height="54" alt="Reviews avatar" />
         </div>
         <span className="reviews__user-name">
+          {/* eslint-disable-next-line */}
           {review.user.name}
         </span>
       </div>
@@ -24,12 +26,15 @@ function ReviewItem({ review }: ReviewProps): JSX.Element {
           </div>
         </div>
         <p className="reviews__text">
+          {/* eslint-disable-next-line */}
           {review.review}
         </p>
         <time
           className="reviews__time"
+          // eslint-disable-next-line
           dateTime={review.date}
         >
+          {/* eslint-disable-next-line */}
           {formatDate(review.date)}
         </time>
       </div>

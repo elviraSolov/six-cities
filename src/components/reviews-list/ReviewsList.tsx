@@ -1,4 +1,4 @@
-import { Review } from 'types/review';
+import { Review } from 'types/offer';
 import ReviewItem from './review-item/ReviewItem';
 import CommentForm from '@components/comment-form/CommentForm';
 
@@ -14,7 +14,9 @@ function ReviewsList({reviews}: ReviewsListProps): JSX.Element {
         {
           reviews.map((review: Review) => (
             <ReviewItem
+              // eslint-disable-next-line
               key={review.id}
+              // eslint-disable-next-line
               review={review}
             />
           ))

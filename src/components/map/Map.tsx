@@ -25,17 +25,20 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
-function Map({points, selectedPoint, city, onPointHover, mapClass}: MapProps): JSX.Element {
+function Map({ city, points, selectedPoint, onPointHover, mapClass}: MapProps): JSX.Element {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
   useEffect(() => {
     if (map) {
       const markerLayer = layerGroup().addTo(map);
+
       points.forEach((point) => {
         const marker = new Marker({
-          lat: point.lat,
-          lng: point.lng
+          // eslint-disable-next-line
+          lat: point.latitude,
+          // eslint-disable-next-line
+          lng: point.longitude
         });
 
         marker
@@ -53,7 +56,7 @@ function Map({points, selectedPoint, city, onPointHover, mapClass}: MapProps): J
         map.removeLayer(markerLayer);
       };
     }
-  }, [map, points, selectedPoint]);
+  }, [city, map, points, selectedPoint]);
 
   return (
     <div

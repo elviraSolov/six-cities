@@ -3,8 +3,8 @@ import { cities } from "@const";
 export type CityName = typeof cities[number];
 
 export type Location = {
-  lat: number;
-  lng: number;
+  latitude: number;
+  longitude: number;
   zoom: number;
 }
 

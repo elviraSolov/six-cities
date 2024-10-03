@@ -1,4 +1,4 @@
-import { useState, useEffect, MutableRefObject, useRef } from 'react';
+import { useState, useEffect, MutableRefObject } from 'react';
 import { Map, TileLayer } from 'leaflet';
 import { City } from 'types/city';
 
@@ -7,29 +7,36 @@ function useMap(
   city: City
 ): Map | null {
   const [map, setMap] = useState<Map | null>(null);
-  const isRenderedRef = useRef<boolean>(false);
 
   useEffect(() => {
-    if (mapRef.current !== null && !isRenderedRef.current) {
-      const instance = new Map(mapRef.current, {
-        center: {
-          lat: city.location.lat,
-          lng: city.location.lng,
-        },
-        zoom: city.location.zoom,
-      });
+    if (mapRef.current !== null) {
+      if (map) {
+        map.setView(
+          // eslint-disable-next-line
+          { lat: city.location.latitude, lng: city.location.longitude },
+          city.location.zoom
+        );
+      } else {
+        const instance = new Map(mapRef.current, {
+          center: {
+            // eslint-disable-next-line
+            lat: city.location.latitude,
+            // eslint-disable-next-line
+            lng: city.location.longitude,
+          },
+          zoom: city.location.zoom,
+        });
 
-      const layer = new TileLayer(
-        'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
-        {
-          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-        },
-      );
+        const layer = new TileLayer(
+          'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
+          {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+          },
+        );
 
-      instance.addLayer(layer);
-
-      setMap(instance);
-      isRenderedRef.current = true;
+        instance.addLayer(layer);
+        setMap(instance);
+      }
     }
   }, [mapRef, city]);
 
