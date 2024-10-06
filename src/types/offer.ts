@@ -1,5 +1,5 @@
-import { CityName, Location } from "types/city";
-import { offerType } from "@const";
+import { CityName, Location } from 'types/city';
+import { offerType, Sorting } from '@const';
 
 export type User = {
   id: number;
@@ -32,3 +32,5 @@ export type Offer = {
   };
   reviews?: Review[];
 };
+
+export type SortName = keyof typeof Sorting;

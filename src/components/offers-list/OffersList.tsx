@@ -1,13 +1,21 @@
 import OfferCard from './offer-card/OfferCard';
-import { Offer } from 'types/offer';
+import { Offer, SortName } from 'types/offer';
 import { useState } from 'react';
 import Map from '@components/map/Map';
 import { Location } from 'types/city';
 import { useAppSelector } from '@hooks/useAppSelector';
+import SortingList from '@components/sorting-list/SortingList';
+import { setOffersSorting } from '@store/action';
+import { useAppDispatch } from '@hooks/useAppDispatch';
+import { State } from 'types/state';
 
 function OffersList(): JSX.Element {
-  const activeCity = useAppSelector((state) => state.city);
-  const offers = useAppSelector((state) => state.offers);
+  const activeCity = useAppSelector((state: State) => state.city);
+  const offers = useAppSelector((state: State) => state.offers);
+  // eslint-disable-next-line
+  const activeSorting = useAppSelector((state: State): SortName => state.offersSorting as SortName);
+
+  const dispatch = useAppDispatch();
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [activeOffer, setActiveOffer] = useState<number | null>(null);
@@ -26,6 +34,10 @@ function OffersList(): JSX.Element {
     setSelectedPoint(point);
   };
 
+  const onSortingChange = (name: SortName) => {
+    dispatch(setOffersSorting(name));
+  };
+
   return (
     <div className="cities__places-container container">
       {offers.length === 0 ? (
@@ -42,21 +54,11 @@ function OffersList(): JSX.Element {
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
           <b className="places__found">{offers.length} places to stay in {activeCity.name}</b>
-          <form className="places__sorting" action="#" method="get">
-            <span className="places__sorting-caption">Sort by</span>
-            <span className="places__sorting-type" tabIndex={0}>
-              Popular
-              <svg className="places__sorting-arrow" width="7" height="4">
-                <use xlinkHref="#icon-arrow-select"></use>
-              </svg>
-            </span>
-            <ul className="places__options places__options--custom places__options--opened">
-              <li className="places__option places__option--active" tabIndex={0}>Popular</li>
-              <li className="places__option" tabIndex={0}>Price: low to high</li>
-              <li className="places__option" tabIndex={0}>Price: high to low</li>
-              <li className="places__option" tabIndex={0}>Top rated first</li>
-            </ul>
-          </form>
+          <SortingList
+            onChange={onSortingChange}
+            // eslint-disable-next-line
+            activeSorting={activeSorting}
+          />
           <div className="cities__places-list places__list tabs__content">
             {offers.map((offer) =>
               (

@@ -55,3 +55,19 @@ export const months = ['January', 'February', 'March', 'April', 'May', 'June', '
 export const URL_MARKER_DEFAULT = 'img/pin.svg';
 
 export const URL_MARKER_CURRENT = 'img/pin-active.svg';
+
+export enum Sorting {
+  Popular = 'Popular',
+  PriceIncrease= 'Price: low to high',
+  PriceDecrease= 'Price: high to low',
+  TopRated = 'Top rated first',
+}
+
+// export const Comparator: {
+//   [key in SortName]: (a: Offer, b: Offer) => number
+// } = {
+//   POPULAR: () => 0,
+//   PRICE_INCREASE: (a: Offer, b: Offer) => a.price - b.price,
+//   PRICE_DECREASE: (a: Offer, b: Offer) => b.price - a.price,
+//   TOP_RATED: (a: Offer, b: Offer) => b.stars - a.stars,
+// };
