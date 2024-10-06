@@ -1,13 +1,8 @@
 import OffersList from '@components/offers-list/OffersList';
-import { City } from 'types/city';
 import { Link } from 'react-router-dom';
 import CitiesList from '@components/cities-list/CitiesList';
 
-type MainProps = {
-  city: City;
-}
-
-function MainPage({ city }: MainProps): JSX.Element {
+function MainPage(): JSX.Element {
   return (
     <body>
       <div style={{ 'display': 'none' }}>

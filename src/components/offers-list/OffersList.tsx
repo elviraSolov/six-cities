@@ -1,8 +1,7 @@
 import OfferCard from './offer-card/OfferCard';
-import { Offer, SortName } from 'types/offer';
+import { SortName } from 'types/offer';
 import { useState } from 'react';
 import Map from '@components/map/Map';
-import { Location } from 'types/city';
 import { useAppSelector } from '@hooks/useAppSelector';
 import SortingList from '@components/sorting-list/SortingList';
 import { setOffersSorting } from '@store/action';
@@ -26,12 +25,6 @@ function OffersList(): JSX.Element {
 
   const handleCardMouseLeave = () => {
     setActiveOffer(null);
-  };
-
-  const [selectedPoint, setSelectedPoint] = useState<Location | undefined>(undefined);
-
-  const onPointHover = (point: Location) => {
-    setSelectedPoint(point);
   };
 
   const onSortingChange = (name: SortName) => {
@@ -75,9 +68,8 @@ function OffersList(): JSX.Element {
       )}
       <Map
         city={activeCity}
-        points={offers.map((offer: Offer) => offer.location)}
-        selectedPoint={selectedPoint}
-        onPointHover={onPointHover}
+        points={offers.map(({ id, location }) => ({ id, ...location }))}
+        activeOffer={activeOffer}
         mapClass={'cities__right-section'}
       />
     </div>

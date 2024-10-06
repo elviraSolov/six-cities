@@ -62,12 +62,3 @@ export enum Sorting {
   PriceDecrease= 'Price: high to low',
   TopRated = 'Top rated first',
 }
-
-// export const Comparator: {
-//   [key in SortName]: (a: Offer, b: Offer) => number
-// } = {
-//   POPULAR: () => 0,
-//   PRICE_INCREASE: (a: Offer, b: Offer) => a.price - b.price,
-//   PRICE_DECREASE: (a: Offer, b: Offer) => b.price - a.price,
-//   TOP_RATED: (a: Offer, b: Offer) => b.stars - a.stars,
-// };

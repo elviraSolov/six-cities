@@ -3,9 +3,7 @@ import { OFFERS } from '@mocks/offers';
 import { Offer } from 'types/offer';
 // import NotFoundPage from '@pages/not-found/NotFoundPage';
 import ReviewsList from '@components/reviews-list/ReviewsList';
-import { useState } from 'react';
 import Map from '@components/map/Map';
-import { Location } from 'types/city';
 import OfferCard from '@components/offers-list/offer-card/OfferCard';
 
 function OfferPage(): JSX.Element {
@@ -15,12 +13,6 @@ function OfferPage(): JSX.Element {
 
   const STARS_COUNT = 5;
   const MAX_PERCENT_STARS_WIDTH = 100;
-
-  const [selectedPoint, setSelectedPoint] = useState<Location | undefined>(undefined);
-
-  const onPointHover = (point: Location) => {
-    setSelectedPoint(point);
-  };
 
   const handleCardMouseMove = (id: number) => id;
 
@@ -176,8 +168,6 @@ function OfferPage(): JSX.Element {
               <Map
                 city={offer.city}
                 points={[offer.location]}
-                selectedPoint={selectedPoint}
-                onPointHover={onPointHover}
                 mapClass={'property__map'}
               />
             </section>

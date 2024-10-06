@@ -7,9 +7,8 @@ import useMap from '@hooks/useMap';
 
 type MapProps = {
   city: City;
-  points: Location[];
-  selectedPoint?: Location;
-  onPointHover: (point: Location) => void;
+  points: (Location & { id?: number })[];
+  activeOffer?: number | null;
   mapClass: string;
 }
 
@@ -25,7 +24,7 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
-function Map({ city, points, selectedPoint, onPointHover, mapClass}: MapProps): JSX.Element {
+function Map({ city, points, activeOffer, mapClass}: MapProps): JSX.Element {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
@@ -33,30 +32,24 @@ function Map({ city, points, selectedPoint, onPointHover, mapClass}: MapProps): 
     if (map) {
       const markerLayer = layerGroup().addTo(map);
 
-      points.forEach((point) => {
+      points.forEach(({ id, latitude, longitude }) => {
         const marker = new Marker({
           // eslint-disable-next-line
-          lat: point.latitude,
+          lat: latitude,
           // eslint-disable-next-line
-          lng: point.longitude
+          lng: longitude
         });
 
         marker
-          .setIcon(
-            selectedPoint !== undefined && point === selectedPoint
-              ? currentCustomIcon
-              : defaultCustomIcon
-          )
+          .setIcon(activeOffer === id ? currentCustomIcon : defaultCustomIcon)
           .addTo(markerLayer);
-
-        marker.on('mouseover', () => onPointHover(point));
       });
 
       return () => {
         map.removeLayer(markerLayer);
       };
     }
-  }, [city, map, points, selectedPoint]);
+  }, [city, map, points, activeOffer]);
 
   return (
     <div
