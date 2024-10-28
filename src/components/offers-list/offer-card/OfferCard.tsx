@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Offer } from 'types/offer';
+import { Offer } from 'types/types';
 
 const STARS_COUNT = 5;
 const MAX_PERCENT_STARS_WIDTH = 100;
@@ -42,7 +42,6 @@ const OfferCard = ({
           <a href="#">
             <img
               className="place-card__image"
-              // eslint-disable-next-line
               src={previewImage}
               width={place === 'favorites' ? '150' : '260'}
               height={place === 'favorites' ? '110' : '200'} alt="Place image"

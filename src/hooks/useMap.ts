@@ -1,27 +1,24 @@
 import { useState, useEffect, MutableRefObject } from 'react';
 import { Map, TileLayer } from 'leaflet';
-import { City } from 'types/city';
+import { City } from 'types/types';
 
-function useMap(
+const useMap = (
   mapRef: MutableRefObject<HTMLElement | null>,
   city: City
-): Map | null {
+): Map | null => {
   const [map, setMap] = useState<Map | null>(null);
 
   useEffect(() => {
     if (mapRef.current !== null) {
       if (map) {
         map.setView(
-          // eslint-disable-next-line
           { lat: city.location.latitude, lng: city.location.longitude },
           city.location.zoom
         );
       } else {
         const instance = new Map(mapRef.current, {
           center: {
-            // eslint-disable-next-line
             lat: city.location.latitude,
-            // eslint-disable-next-line
             lng: city.location.longitude,
           },
           zoom: city.location.zoom,
@@ -41,6 +38,6 @@ function useMap(
   }, [mapRef, city]);
 
   return map;
-}
+};
 
 export default useMap;

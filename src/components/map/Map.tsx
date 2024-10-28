@@ -2,7 +2,7 @@ import { Icon, layerGroup, Marker } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useRef, useEffect } from 'react';
 import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '@const';
-import { City, Location } from 'types/city';
+import { City, Location } from 'types/types';
 import useMap from '@hooks/useMap';
 
 type MapProps = {
@@ -24,7 +24,7 @@ const currentCustomIcon = new Icon({
   iconAnchor: [20, 40]
 });
 
-function Map({ city, points, activeOffer, mapClass}: MapProps): JSX.Element {
+const Map = ({ city, points, activeOffer, mapClass}: MapProps): JSX.Element => {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
@@ -34,9 +34,7 @@ function Map({ city, points, activeOffer, mapClass}: MapProps): JSX.Element {
 
       points.forEach(({ id, latitude, longitude }) => {
         const marker = new Marker({
-          // eslint-disable-next-line
           lat: latitude,
-          // eslint-disable-next-line
           lng: longitude
         });
 
@@ -57,6 +55,6 @@ function Map({ city, points, activeOffer, mapClass}: MapProps): JSX.Element {
       ref={mapRef}
     />
   );
-}
+};
 
 export default Map;

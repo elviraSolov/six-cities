@@ -1,4 +1,4 @@
-import { CityName } from 'types/city';
+import { CityName } from 'types/types';
 
 type CityProps = {
   name: string;
@@ -6,7 +6,7 @@ type CityProps = {
   onClick: (name: CityName) => void;
 };
 
-function City({ name, isActive, onClick }: CityProps): JSX.Element {
+const City = ({ name, isActive, onClick }: CityProps): JSX.Element => {
   const handleClick = () => {
     onClick(name);
   };
@@ -24,6 +24,6 @@ function City({ name, isActive, onClick }: CityProps): JSX.Element {
       </a>
     </li>
   );
-}
+};
 
 export default City;

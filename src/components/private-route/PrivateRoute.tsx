@@ -6,7 +6,7 @@ type PrivareRouteProps = {
   children: JSX.Element;
 }
 
-function PrivateRoute(props: PrivareRouteProps): JSX.Element {
+const PrivateRoute = (props: PrivareRouteProps): JSX.Element => {
   const { authorizationStatus, children } = props;
 
   return (
@@ -14,6 +14,6 @@ function PrivateRoute(props: PrivareRouteProps): JSX.Element {
       ? children
       : <Navigate to='/login' />
   );
-}
+};
 
 export default PrivateRoute;

@@ -1,7 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { cityLocation, cities, Sorting } from '@const';
-import { City } from 'types/city';
-import { Offer, SortName } from 'types/offer';
+import { Offer, SortName, City } from 'types/types';
 import { setCity, setOffers, setOffersSorting, fetchOffers } from './action';
 
 type State = {
@@ -36,14 +35,13 @@ export const reducer = createReducer(initialState, (builder) => {
       state.offers = action.payload;
       state.isOffersLoading = false;
     })
-    // .addCase(fetchOffers.rejected, (state) => {
-    //   state.isOffersLoading = false;
-    // })
+    .addCase(fetchOffers.rejected, (state) => {
+      state.isOffersLoading = false;
+    })
     .addCase(setOffers, (state, action) => {
       state.offers = action.payload;
     })
     .addCase(setOffersSorting, (state, action) => {
-      // eslint-disable-next-line
       state.offersSorting = action.payload;
       if (state.offersSorting === 'Popular') {
         state.offers.sort(() => 0);

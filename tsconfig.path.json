@@ -14,8 +14,7 @@
       "@mocks/*": ["mocks/*"],
       "@pages/*": ["pages/*"],
       "@store/*": ["store/*"],
-      "@const/*": ["const/*"],
-      "@utils/*": ["utils/*"]
+      "@const/*": ["const/*"]
     }
   }
 }

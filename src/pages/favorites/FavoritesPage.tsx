@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import OfferCard from '@components/offers-list/offer-card/OfferCard';
-import { Offer } from 'types/offer';
+import { Offer } from 'types/types';
 import { Link } from 'react-router-dom';
 
 type FavoritesProps = {
   offers: Offer[];
 }
 
-function FavoritesPage({offers}: FavoritesProps): JSX.Element {
+const FavoritesPage = ({offers}: FavoritesProps): JSX.Element => {
   const offersByCity = offers.reduce<{ [key: string ]: Offer[] }>((acc, curr) => {
     if (curr.isBookmark) {
       const city = curr.city.name;
@@ -111,6 +111,6 @@ function FavoritesPage({offers}: FavoritesProps): JSX.Element {
       </div>
     </body>
   );
-}
+};
 
 export default FavoritesPage;

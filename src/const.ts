@@ -1,4 +1,4 @@
-import { CityName, Location } from 'types/city';
+import { CityName, Location } from 'types/types';
 
 export enum AuthorizationStatus {
   Auth = 'AUTH',

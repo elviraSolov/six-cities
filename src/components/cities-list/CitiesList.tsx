@@ -2,7 +2,7 @@ import { useAppSelector } from '@hooks/useAppSelector';
 import City from './city/City';
 import { cities } from '@const';
 import { useAppDispatch } from '@hooks/useAppDispatch';
-import { CityName } from 'types/city';
+import { CityName } from 'types/types';
 import { setCity } from '@store/action';
 
 const CitiesList = (): JSX.Element => {

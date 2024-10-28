@@ -1,15 +1,14 @@
 import OfferCard from './offer-card/OfferCard';
-import { SortName } from 'types/offer';
 import { useState } from 'react';
 import Map from '@components/map/Map';
 import { useAppSelector } from '@hooks/useAppSelector';
 import SortingList from '@components/sorting-list/SortingList';
 import { setOffersSorting } from '@store/action';
 import { useAppDispatch } from '@hooks/useAppDispatch';
-import { State } from 'types/state';
+import { State, SortName } from 'types/types';
 import Spinner from '@components/spinner/Spinner';
 
-function OffersList(): JSX.Element {
+const OffersList = (): JSX.Element => {
   const activeCity = useAppSelector((state: State) => state.city);
   const offers = useAppSelector((state: State) => state.offers);
   // eslint-disable-next-line
@@ -17,7 +16,6 @@ function OffersList(): JSX.Element {
 
   const dispatch = useAppDispatch();
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [activeOffer, setActiveOffer] = useState<number | null>(null);
 
   const isOffersLoading = useAppSelector((state) => state.isOffersLoading);
@@ -56,7 +54,6 @@ function OffersList(): JSX.Element {
           <b className="places__found">{offers.length} places to stay in {activeCity.name}</b>
           <SortingList
             onChange={onSortingChange}
-            // eslint-disable-next-line
             activeSorting={activeSorting}
           />
           <div className="cities__places-list places__list tabs__content">
@@ -81,6 +78,6 @@ function OffersList(): JSX.Element {
       />
     </div>
   );
-}
+};
 
 export default OffersList;

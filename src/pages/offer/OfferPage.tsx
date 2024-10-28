@@ -1,12 +1,11 @@
 import { Link, useParams } from 'react-router-dom';
 import { OFFERS } from '@mocks/offers';
-import { Offer } from 'types/offer';
-// import NotFoundPage from '@pages/not-found/NotFoundPage';
+import { Offer } from 'types/types';
 import ReviewsList from '@components/reviews-list/ReviewsList';
 import Map from '@components/map/Map';
 import OfferCard from '@components/offers-list/offer-card/OfferCard';
 
-function OfferPage(): JSX.Element {
+const OfferPage = (): JSX.Element => {
   const params = useParams();
 
   const offer = OFFERS.find((item: Offer) => item.id.toString() === params.id);
@@ -59,7 +58,6 @@ function OfferPage(): JSX.Element {
               <div className="property__gallery-container container">
                 <div className="property__gallery">
                   <div className="property__image-wrapper">
-                    {/* eslint-disable-next-line */}
                     <img className="property__image" src={offer.previewImage} alt="Photo studio" />
                   </div>
                 </div>
@@ -194,10 +192,6 @@ function OfferPage(): JSX.Element {
       </div>
     </body>
   );
-}
-//  else {
-//   return (
-//     <NotFoundPage />
-//   );
+};
 
 export default OfferPage;

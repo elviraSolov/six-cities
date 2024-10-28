@@ -1,45 +1,38 @@
-import { Review } from 'types/offer';
+import { Review } from 'types/types';
 import { formatDate } from '@utils';
 
 type ReviewProps = {
   review: Review;
 }
 
-function ReviewItem({ review }: ReviewProps): JSX.Element {
-  return (
-    <li className="reviews__item">
-      <div className="reviews__user user">
-        <div className="reviews__avatar-wrapper user__avatar-wrapper">
-          {/* eslint-disable-next-line */}
-          <img className="reviews__avatar user__avatar" src={review.user.avatarUrl} width="54" height="54" alt="Reviews avatar" />
-        </div>
-        <span className="reviews__user-name">
-          {/* eslint-disable-next-line */}
-          {review.user.name}
-        </span>
+const ReviewItem = ({ review }: ReviewProps): JSX.Element => (
+  <li className="reviews__item">
+    <div className="reviews__user user">
+      <div className="reviews__avatar-wrapper user__avatar-wrapper">
+        <img className="reviews__avatar user__avatar" src={review.user.avatarUrl} width="54" height="54" alt="Reviews avatar" />
       </div>
-      <div className="reviews__info">
-        <div className="reviews__rating rating">
-          <div className="reviews__stars rating__stars">
-            <span style={{'width': '80%'}}></span>
-            <span className="visually-hidden">Rating</span>
-          </div>
+      <span className="reviews__user-name">
+        {review.user.name}
+      </span>
+    </div>
+    <div className="reviews__info">
+      <div className="reviews__rating rating">
+        <div className="reviews__stars rating__stars">
+          <span style={{'width': '80%'}}></span>
+          <span className="visually-hidden">Rating</span>
         </div>
-        <p className="reviews__text">
-          {/* eslint-disable-next-line */}
-          {review.review}
-        </p>
-        <time
-          className="reviews__time"
-          // eslint-disable-next-line
-          dateTime={review.date}
-        >
-          {/* eslint-disable-next-line */}
-          {formatDate(review.date)}
-        </time>
       </div>
-    </li>
-  );
-}
+      <p className="reviews__text">
+        {review.review}
+      </p>
+      <time
+        className="reviews__time"
+        dateTime={review.date}
+      >
+        {formatDate(review.date)}
+      </time>
+    </div>
+  </li>
+);
 
 export default ReviewItem;
