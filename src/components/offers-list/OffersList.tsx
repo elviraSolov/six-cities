@@ -12,7 +12,7 @@ const OffersList = (): JSX.Element => {
   const activeCity = useAppSelector((state: State) => state.city);
   const offers = useAppSelector((state: State) => state.offers);
   // eslint-disable-next-line
-  const activeSorting = useAppSelector((state: State): SortName => state.offersSorting as SortName);
+  const activeSorting = useAppSelector((state: State): SortName => state.sorting as SortName);
 
   const dispatch = useAppDispatch();
 

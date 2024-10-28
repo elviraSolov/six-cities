@@ -64,5 +64,6 @@ export enum Sorting {
 }
 
 export enum ApiRoute {
-  Offers = '/hotels'
+  Offers = '/hotels',
+  Login = '/login',
 }

@@ -1,13 +1,14 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { cityLocation, cities, Sorting } from '@const';
+import { cityLocation, cities, Sorting, AuthorizationStatus } from '@const';
 import { Offer, SortName, City } from 'types/types';
-import { setCity, setOffers, setOffersSorting, fetchOffers } from './action';
+import { setCity, setOffers, setOffersSorting, fetchOffers, fetchUserStatus } from './action';
 
 type State = {
   city: City;
   offers: Offer[];
   isOffersLoading: boolean;
-  offersSorting: SortName;
+  sorting: SortName;
+  authorizationStatus: AuthorizationStatus;
 };
 
 const initialState: State = {
@@ -17,7 +18,8 @@ const initialState: State = {
   },
   offers: [],
   isOffersLoading: false,
-  offersSorting: Sorting.Popular,
+  sorting: Sorting.Popular,
+  authorizationStatus: AuthorizationStatus.NoAuth,
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -41,15 +43,21 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(setOffers, (state, action) => {
       state.offers = action.payload;
     })
+    .addCase(fetchUserStatus.fulfilled, (state, action) => {
+      state.authorizationStatus = AuthorizationStatus.Auth;
+    })
+    .addCase(fetchUserStatus.rejected, (state) => {
+      state.authorizationStatus = AuthorizationStatus.NoAuth;
+    })
     .addCase(setOffersSorting, (state, action) => {
-      state.offersSorting = action.payload;
-      if (state.offersSorting === 'Popular') {
+      state.sorting = action.payload;
+      if (state.sorting === 'Popular') {
         state.offers.sort(() => 0);
-      } else if (state.offersSorting === 'PriceIncrease') {
+      } else if (state.sorting === 'PriceIncrease') {
         state.offers.sort((a, b) => a.price - b.price);
-      } else if (state.offersSorting === 'PriceDecrease') {
+      } else if (state.sorting === 'PriceDecrease') {
         state.offers.sort((a, b) => b.price - a.price);
-      } else if (state.offersSorting === 'TopRated') {
+      } else if (state.sorting === 'TopRated') {
         state.offers.sort((a, b) => b.price - a.price);
       }
     });

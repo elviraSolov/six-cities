@@ -5,7 +5,7 @@ import FavoritesPage from '@pages/favorites/FavoritesPage';
 import OfferPage from '@pages/offer/OfferPage';
 import NotFoundPage from '@pages/not-found/NotFoundPage';
 import PrivateRoute from '@components/private-route/PrivateRoute';
-import { AppRoute, AuthorizationStatus } from '@const';
+import { AppRoute } from '@const';
 
 const App = (): JSX.Element => (
   <BrowserRouter>
@@ -25,7 +25,7 @@ const App = (): JSX.Element => (
       <Route
         path={AppRoute.Favorites}
         element={
-          <PrivateRoute authorizationStatus={AuthorizationStatus.Auth} >
+          <PrivateRoute>
             <FavoritesPage offers={[]}/>
           </PrivateRoute>
         }
