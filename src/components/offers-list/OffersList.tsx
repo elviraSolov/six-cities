@@ -7,6 +7,7 @@ import SortingList from '@components/sorting-list/SortingList';
 import { setOffersSorting } from '@store/action';
 import { useAppDispatch } from '@hooks/useAppDispatch';
 import { State } from 'types/state';
+import Spinner from '@components/spinner/Spinner';
 
 function OffersList(): JSX.Element {
   const activeCity = useAppSelector((state: State) => state.city);
@@ -19,6 +20,8 @@ function OffersList(): JSX.Element {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [activeOffer, setActiveOffer] = useState<number | null>(null);
 
+  const isOffersLoading = useAppSelector((state) => state.isOffersLoading);
+
   const handleCardMouseMove = (id: number) => {
     setActiveOffer(id);
   };
@@ -30,6 +33,10 @@ function OffersList(): JSX.Element {
   const onSortingChange = (name: SortName) => {
     dispatch(setOffersSorting(name));
   };
+
+  if (isOffersLoading) {
+    return <Spinner />;
+  }
 
   return (
     <div className="cities__places-container container">

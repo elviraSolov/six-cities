@@ -59,7 +59,8 @@ function OfferPage(): JSX.Element {
               <div className="property__gallery-container container">
                 <div className="property__gallery">
                   <div className="property__image-wrapper">
-                    <img className="property__image" src={offer.image} alt="Photo studio" />
+                    {/* eslint-disable-next-line */}
+                    <img className="property__image" src={offer.previewImage} alt="Photo studio" />
                   </div>
                 </div>
               </div>

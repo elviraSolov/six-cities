@@ -13,7 +13,7 @@ type OfferCardProps = Offer & {
 const OfferCard = ({
   id,
   name,
-  image,
+  previewImage,
   type,
   price,
   stars,
@@ -42,7 +42,8 @@ const OfferCard = ({
           <a href="#">
             <img
               className="place-card__image"
-              src={image}
+              // eslint-disable-next-line
+              src={previewImage}
               width={place === 'favorites' ? '150' : '260'}
               height={place === 'favorites' ? '110' : '200'} alt="Place image"
             />

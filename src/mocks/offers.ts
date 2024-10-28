@@ -4,7 +4,7 @@ export const OFFERS: Offer[] = [
   {
     id: 1,
     name: 'Beautiful luxurious apartment at great location',
-    image: 'img/apartment-01.jpg',
+    previewImage: 'img/apartment-01.jpg',
     type: 'Apartment',
     price: 120,
     stars: 4,
@@ -41,7 +41,7 @@ export const OFFERS: Offer[] = [
   {
     id: 2,
     name: 'Wood and stone place',
-    image: 'img/room.jpg',
+    previewImage: 'img/room.jpg',
     type: 'Room',
     price: 80,
     stars: 4,
@@ -77,7 +77,7 @@ export const OFFERS: Offer[] = [
   {
     id: 3,
     name: 'Canal View Prinsengracht',
-    image: 'img/apartment-02.jpg',
+    previewImage: 'img/apartment-02.jpg',
     type: 'Apartment',
     price: 132,
     stars: 4,
@@ -112,7 +112,7 @@ export const OFFERS: Offer[] = [
   {
     id: 4,
     name: 'Nice, cozy, warm big bed apartment',
-    image: 'img/apartment-03.jpg',
+    previewImage: 'img/apartment-03.jpg',
     type: 'Apartment',
     price: 180,
     stars: 5,

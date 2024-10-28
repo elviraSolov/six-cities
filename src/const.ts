@@ -62,3 +62,7 @@ export enum Sorting {
   PriceDecrease= 'Price: high to low',
   TopRated = 'Top rated first',
 }
+
+export enum ApiRoute {
+  Offers = '/hotels'
+}

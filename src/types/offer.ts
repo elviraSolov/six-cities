@@ -19,7 +19,6 @@ export type Review = {
 export type Offer = {
   id: number;
   name: string;
-  image: string;
   type: typeof offerType[number];
   price: number;
   stars: number;
@@ -31,6 +30,7 @@ export type Offer = {
     location: Location;
   };
   reviews?: Review[];
+  previewImage: string;
 };
 
 export type SortName = keyof typeof Sorting;
