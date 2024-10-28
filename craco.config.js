@@ -11,8 +11,8 @@ module.exports = {
       '@pages': path.resolve(__dirname, 'src/pages'),
       '@store': path.resolve(__dirname, 'src/store'),
       '@const': path.resolve(__dirname, 'src/const'),
-      '@utils': path.resolve(__dirname, 'src/utils')
-    }
+      '@utils': path.resolve(__dirname, 'src/utils'),
+    },
   },
   jest: {
     configure: {

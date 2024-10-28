@@ -1,14 +1,20 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { unstable_HistoryRouter as HistoryRouter, Routes, Route } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
+
 import MainPage from '@pages/main/MainPage';
 import LoginPage from '@pages/login/LoginPage';
 import FavoritesPage from '@pages/favorites/FavoritesPage';
 import OfferPage from '@pages/offer/OfferPage';
 import NotFoundPage from '@pages/not-found/NotFoundPage';
+
 import PrivateRoute from '@components/private-route/PrivateRoute';
+
 import { AppRoute } from '@const';
 
+const history = createBrowserHistory();
+
 const App = (): JSX.Element => (
-  <BrowserRouter>
+  <HistoryRouter history={history}>
     <Routes>
       <Route
         index
@@ -35,7 +41,7 @@ const App = (): JSX.Element => (
         element={<NotFoundPage />}
       />
     </Routes>
-  </BrowserRouter>
+  </HistoryRouter>
 );
 
 export default App;

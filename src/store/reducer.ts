@@ -1,7 +1,9 @@
 import { createReducer } from '@reduxjs/toolkit';
+
+import { Offer, SortName, City, User } from 'types/types';
+
 import { cityLocation, cities, Sorting, AuthorizationStatus } from '@const';
-import { Offer, SortName, City } from 'types/types';
-import { setCity, setOffers, setOffersSorting, fetchOffers, fetchUserStatus } from './action';
+import { setCity, setOffers, setOffersSorting, fetchOffers, fetchUserStatus, loginUser } from './action';
 
 type State = {
   city: City;
@@ -9,6 +11,7 @@ type State = {
   isOffersLoading: boolean;
   sorting: SortName;
   authorizationStatus: AuthorizationStatus;
+  user: User['email'];
 };
 
 const initialState: State = {
@@ -20,6 +23,7 @@ const initialState: State = {
   isOffersLoading: false,
   sorting: Sorting.Popular,
   authorizationStatus: AuthorizationStatus.NoAuth,
+  user: '',
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -44,10 +48,15 @@ export const reducer = createReducer(initialState, (builder) => {
       state.offers = action.payload;
     })
     .addCase(fetchUserStatus.fulfilled, (state, action) => {
+      state.user = action.payload.email;
       state.authorizationStatus = AuthorizationStatus.Auth;
     })
     .addCase(fetchUserStatus.rejected, (state) => {
       state.authorizationStatus = AuthorizationStatus.NoAuth;
+    })
+    .addCase(loginUser.fulfilled, (state, action) => {
+      state.user = action.payload;
+      state.authorizationStatus = AuthorizationStatus.Auth;
     })
     .addCase(setOffersSorting, (state, action) => {
       state.sorting = action.payload;
