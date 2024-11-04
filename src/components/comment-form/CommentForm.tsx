@@ -1,9 +1,13 @@
-import { ChangeEvent, Fragment, useState } from 'react';
+import { ChangeEvent, FormEvent, Fragment, useState } from 'react';
+import { CommentAuth } from 'types/types';
 
-const CommentForm = () => {
+type FormProps = {
+  onSubmit: (formData: Omit<CommentAuth, 'id'>) => void;
+};
+
+const CommentForm = ({ onSubmit }: FormProps) => {
   const [review, setReview] = useState<string>('');
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [rating, setRating] = useState<number | null>(null);
+  const [rating, setRating] = useState<number>(0);
 
   const handleReviewChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setReview(event.target.value);
@@ -13,11 +17,24 @@ const CommentForm = () => {
     setRating(Number(event.target.value));
   };
 
+  const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    onSubmit({
+      comment: review,
+      rating,
+    });
+
+    setReview('');
+    setRating(0);
+  };
+
   return (
     <form
       className="reviews__form form"
       action="#"
       method="post"
+      onSubmit={handleFormSubmit}
     >
       <label
         className="reviews__label form__label"
@@ -68,7 +85,6 @@ const CommentForm = () => {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled
         >
           Submit
         </button>

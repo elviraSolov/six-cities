@@ -7,8 +7,9 @@ import { useAppSelector } from '@hooks/useAppSelector';
 import Spinner from '@components/spinner/Spinner';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch } from '@hooks/useAppDispatch';
-import { fetchComments, fetchNearbyOffers, fetchOffer } from '@store/action';
+import { fetchComments, fetchNearbyOffers, fetchOffer, postComment } from '@store/action';
 import { useEffect } from 'react';
+import { CommentAuth } from 'types/types';
 
 const OfferPage = (): JSX.Element | null => {
   const params = useParams();
@@ -19,6 +20,10 @@ const OfferPage = (): JSX.Element | null => {
   const offer = useAppSelector((state) => state.offer);
   const nearbyOffers = useAppSelector((state) => state.nearbyOffers);
   const comments = useAppSelector((state) => state.comments);
+
+  const onFormSubmit = (formData: Omit<CommentAuth, 'id'>) => {
+    dispatch(postComment({ id, ...formData }));
+  };
 
   useEffect(() => {
     const { id } = params;
@@ -151,7 +156,10 @@ const OfferPage = (): JSX.Element | null => {
                     <p className="property__text">{description}</p>
                   </div>
                 </div>
-                <ReviewsList comments={comments} />
+                <ReviewsList
+                  onSubmit={onFormSubmit}
+                  comments={comments}
+                />
               </div>
             </div>
             <Map

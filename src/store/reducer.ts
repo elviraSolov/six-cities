@@ -13,6 +13,7 @@ import {
   fetchOffer,
   fetchNearbyOffers,
   fetchComments,
+  postComment,
 } from './action';
 
 type State = {
@@ -90,6 +91,9 @@ export const reducer = createReducer(initialState, (builder) => {
       state.nearbyOffers = action.payload;
     })
     .addCase(fetchComments.fulfilled, (state, action) => {
+      state.comments = action.payload;
+    })
+    .addCase(postComment.fulfilled, (state, action) => {
       state.comments = action.payload;
     })
     .addCase(setOffersSorting, (state, action) => {

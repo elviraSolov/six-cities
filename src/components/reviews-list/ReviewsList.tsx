@@ -1,4 +1,4 @@
-import { Comment } from 'types/types';
+import { Comment, CommentAuth } from 'types/types';
 import ReviewItem from './review-item/ReviewItem';
 import CommentForm from '@components/comment-form/CommentForm';
 import { useAppSelector } from '@hooks/useAppSelector';
@@ -6,10 +6,19 @@ import { AuthorizationStatus } from '@const';
 
 type ReviewsListProps = {
   comments: Comment[];
+  onSubmit: (formData: Omit<CommentAuth, 'id'>) => void;
 };
 
-const ReviewsList = ({ comments }: ReviewsListProps): JSX.Element => {
+const ReviewsList = ({ comments, onSubmit }: ReviewsListProps): JSX.Element => {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+
+  if (comments.length === 0) {
+    return (
+      <section className="property__reviews reviews">
+        {authorizationStatus === AuthorizationStatus.Auth && <CommentForm onSubmit={onSubmit} />}
+      </section>
+    );
+  }
 
   return (
     <section className="property__reviews reviews">
@@ -24,7 +33,7 @@ const ReviewsList = ({ comments }: ReviewsListProps): JSX.Element => {
           />
         ))}
       </ul>
-      {authorizationStatus === AuthorizationStatus.Auth && <CommentForm />}
+      {authorizationStatus === AuthorizationStatus.Auth && <CommentForm onSubmit={onSubmit} />}
     </section>
   );
 };

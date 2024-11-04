@@ -52,6 +52,8 @@ export type Comment = {
   comment: string;
 };
 
+export type CommentAuth = Pick<Comment, 'comment' | 'rating'> & Pick<Offer, 'id'>;
+
 export type SortName = keyof typeof Sorting;
 
 export type State = ReturnType<typeof store.getState>;
