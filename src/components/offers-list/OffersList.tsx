@@ -43,7 +43,9 @@ const OffersList = (): JSX.Element => {
           <section className="cities__no-places">
             <div className="cities__status-wrapper tabs__content">
               <b className="cities__status">No places to stay available</b>
-              <p className="cities__status-description">We could not find any property available at the moment in {activeCity.name}</p>
+              <p className="cities__status-description">
+                We could not find any property available at the moment in {activeCity.name}
+              </p>
             </div>
           </section>
           <div className="cities__right-section"></div>
@@ -51,22 +53,22 @@ const OffersList = (): JSX.Element => {
       ) : (
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
-          <b className="places__found">{offers.length} places to stay in {activeCity.name}</b>
+          <b className="places__found">
+            {offers.length} places to stay in {activeCity.name}
+          </b>
           <SortingList
             onChange={onSortingChange}
             activeSorting={activeSorting}
           />
           <div className="cities__places-list places__list tabs__content">
-            {offers.map((offer) =>
-              (
-                <OfferCard
-                  key={offer.id}
-                  {...offer}
-                  onMouseMove={handleCardMouseMove}
-                  onMouseLeave={handleCardMouseLeave}
-                />
-              )
-            )}
+            {offers.map((offer) => (
+              <OfferCard
+                key={offer.id}
+                {...offer}
+                onMouseMove={handleCardMouseMove}
+                onMouseLeave={handleCardMouseLeave}
+              />
+            ))}
           </div>
         </section>
       )}

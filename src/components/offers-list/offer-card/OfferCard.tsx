@@ -8,16 +8,16 @@ type OfferCardProps = Offer & {
   onMouseMove: (id: number) => void;
   onMouseLeave: () => void;
   place?: string;
-}
+};
 
 const OfferCard = ({
   id,
-  name,
+  title,
   previewImage,
   type,
   price,
-  stars,
-  isBookmark,
+  rating,
+  isFavorite,
   isPremium,
   onMouseMove,
   onMouseLeave,
@@ -28,8 +28,12 @@ const OfferCard = ({
   };
 
   return (
-    <Link to={`/offer/${id}` } className={`${place === 'favorites' ? 'favorites__locations-items' : ''}`}>
-      <article className={`place-card ${place === 'favorites' ? 'favorites__card' : 'cities__place-card'}`}
+    <Link
+      to={`/offer/${id}`}
+      className={`${place === 'favorites' ? 'favorites__locations-items' : ''}`}
+    >
+      <article
+        className={`place-card ${place === 'favorites' ? 'favorites__card' : 'cities__place-card'}`}
         onMouseMove={handleMouseMove}
         onMouseLeave={onMouseLeave}
       >
@@ -38,13 +42,16 @@ const OfferCard = ({
             <span>Premium</span>
           </div>
         )}
-        <div className={`place-card__image-wrapper ${place === 'favorites' ? 'favorites__image-wrapper' : 'cities__image-wrapper'}`}>
+        <div
+          className={`place-card__image-wrapper ${place === 'favorites' ? 'favorites__image-wrapper' : 'cities__image-wrapper'}`}
+        >
           <a href="#">
             <img
               className="place-card__image"
               src={previewImage}
               width={place === 'favorites' ? '150' : '260'}
-              height={place === 'favorites' ? '110' : '200'} alt="Place image"
+              height={place === 'favorites' ? '110' : '200'}
+              alt="Place image"
             />
           </a>
         </div>
@@ -54,21 +61,28 @@ const OfferCard = ({
               <b className="place-card__price-value">&euro;{price}</b>
               <span className="place-card__price-text">&#47;&nbsp;night</span>
             </div>
-            <button className={`place-card__bookmark-button button ${isBookmark ? 'place-card__bookmark-button--active' : '' }`} type="button">
-              <svg className="place-card__bookmark-icon" width="18" height="19">
+            <button
+              className={`place-card__bookmark-button button ${isFavorite ? 'place-card__bookmark-button--active' : ''}`}
+              type="button"
+            >
+              <svg
+                className="place-card__bookmark-icon"
+                width="18"
+                height="19"
+              >
                 <use xlinkHref="#icon-bookmark"></use>
               </svg>
-              <span className="visually-hidden">{isBookmark ? 'In bookmarks' : 'To bookmarks'}</span>
+              <span className="visually-hidden">{isFavorite ? 'In bookmarks' : 'To bookmarks'}</span>
             </button>
           </div>
           <div className="place-card__rating rating">
             <div className="place-card__stars rating__stars">
-              <span style={{'width': `${(MAX_PERCENT_STARS_WIDTH * stars) / STARS_COUNT}%`}}></span>
+              <span style={{ width: `${(MAX_PERCENT_STARS_WIDTH * rating) / STARS_COUNT}%` }}></span>
               <span className="visually-hidden">Rating</span>
             </div>
           </div>
           <h2 className="place-card__name">
-            <a href="#">{name}</a>
+            <a href="#">{title}</a>
           </h2>
           <p className="place-card__type">{type}</p>
         </div>

@@ -10,21 +10,21 @@ type MapProps = {
   points: (Location & { id?: number })[];
   activeOffer?: number | null;
   mapClass: string;
-}
+};
 
 const defaultCustomIcon = new Icon({
   iconUrl: URL_MARKER_DEFAULT,
   iconSize: [40, 40],
-  iconAnchor: [20, 40]
+  iconAnchor: [20, 40],
 });
 
 const currentCustomIcon = new Icon({
   iconUrl: URL_MARKER_CURRENT,
   iconSize: [40, 40],
-  iconAnchor: [20, 40]
+  iconAnchor: [20, 40],
 });
 
-const Map = ({ city, points, activeOffer, mapClass}: MapProps): JSX.Element => {
+const Map = ({ city, points, activeOffer, mapClass }: MapProps): JSX.Element => {
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
@@ -35,12 +35,10 @@ const Map = ({ city, points, activeOffer, mapClass}: MapProps): JSX.Element => {
       points.forEach(({ id, latitude, longitude }) => {
         const marker = new Marker({
           lat: latitude,
-          lng: longitude
+          lng: longitude,
         });
 
-        marker
-          .setIcon(activeOffer === id ? currentCustomIcon : defaultCustomIcon)
-          .addTo(markerLayer);
+        marker.setIcon(activeOffer === id ? currentCustomIcon : defaultCustomIcon).addTo(markerLayer);
       });
 
       return () => {

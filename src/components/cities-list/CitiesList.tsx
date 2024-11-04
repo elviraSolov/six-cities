@@ -16,16 +16,14 @@ const CitiesList = (): JSX.Element => {
   return (
     <section className="locations container">
       <ul className="locations__list tabs__list">
-        {
-          cities.map((cityName: string) => (
-            <City
-              key={cityName}
-              name={cityName}
-              isActive={cityName === activeCity.name}
-              onClick={handleClick}
-            />
-          ))
-        }
+        {cities.map((cityName: string) => (
+          <City
+            key={cityName}
+            name={cityName}
+            isActive={cityName === activeCity.name}
+            onClick={handleClick}
+          />
+        ))}
       </ul>
     </section>
   );

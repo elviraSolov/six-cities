@@ -16,19 +16,21 @@ export type City = {
 
 export type Offer = {
   id: number;
-  name: string;
-  type: (typeof offerType)[number];
   price: number;
-  stars: number;
-  isBookmark?: boolean;
-  isPremium?: boolean;
+  rating: number;
+  title: string;
+  isPremium: boolean;
+  isFavorite: boolean;
+  city: City;
   location: Location;
-  city: {
-    name: CityName;
-    location: Location;
-  };
-  reviews?: Review[];
   previewImage: string;
+  type: 'apartment' | 'room' | 'house' | 'hotel';
+  bedrooms: number;
+  description: string;
+  goods: [string];
+  host: User;
+  images: [string];
+  maxAdults: number;
 };
 
 export type User = {
@@ -42,12 +44,12 @@ export type User = {
 
 export type UserAuth = Pick<User, 'email'> & { password: string };
 
-export type Review = {
+export type Comment = {
   id: number;
   user: User;
   date: string;
   rating: number;
-  review: string;
+  comment: string;
 };
 
 export type SortName = keyof typeof Sorting;

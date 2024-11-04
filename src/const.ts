@@ -11,46 +11,64 @@ export enum AppRoute {
   Login = '/login',
   Favorites = '/favorites',
   Offer = '/offer',
+  NotFound = '/404',
+}
+
+export enum HttpCode {
+  NotFound = 404,
 }
 
 export const cities = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
 
 export const cityLocation: { [key in CityName]: Location } = {
-  'Paris': {
+  Paris: {
     latitude: 48.85661,
     longitude: 2.351499,
-    zoom: 13
+    zoom: 13,
   },
-  'Cologne': {
+  Cologne: {
     latitude: 50.938361,
     longitude: 6.959974,
-    zoom: 13
+    zoom: 13,
   },
-  'Brussels': {
+  Brussels: {
     latitude: 50.846557,
     longitude: 4.351697,
-    zoom: 13
+    zoom: 13,
   },
-  'Amsterdam': {
+  Amsterdam: {
     latitude: 52.37454,
     longitude: 4.897976,
-    zoom: 13
+    zoom: 13,
   },
-  'Hamburg': {
+  Hamburg: {
     latitude: 53.550341,
     longitude: 10.000654,
-    zoom: 13
+    zoom: 13,
   },
-  'Dusseldorf': {
+  Dusseldorf: {
     latitude: 51.225402,
     longitude: 6.776314,
-    zoom: 13
+    zoom: 13,
   },
 };
 
 export const offerType = ['Apartment', 'Room', 'House', 'Hotel'];
 
-export const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+export const months = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
 
 export const URL_MARKER_DEFAULT = 'img/pin.svg';
 
@@ -58,12 +76,13 @@ export const URL_MARKER_CURRENT = 'img/pin-active.svg';
 
 export enum Sorting {
   Popular = 'Popular',
-  PriceIncrease= 'Price: low to high',
-  PriceDecrease= 'Price: high to low',
+  PriceIncrease = 'Price: low to high',
+  PriceDecrease = 'Price: high to low',
   TopRated = 'Top rated first',
 }
 
 export enum ApiRoute {
   Offers = '/hotels',
   Login = '/login',
+  Comments = '/comments',
 }

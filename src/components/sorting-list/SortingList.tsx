@@ -20,7 +20,11 @@ const SortingList = ({ onChange, activeSorting }: SortingListProps): JSX.Element
   };
 
   return (
-    <form className="places__sorting" action="#" method="get">
+    <form
+      className="places__sorting"
+      action="#"
+      method="get"
+    >
       <span className="places__sorting-caption">Sort by </span>
       <span
         className="places__sorting-type"
@@ -28,28 +32,28 @@ const SortingList = ({ onChange, activeSorting }: SortingListProps): JSX.Element
         onClick={onClickOptionsSelect}
       >
         {Sorting[activeSorting]}
-        <svg className="places__sorting-arrow" width="7" height="4">
+        <svg
+          className="places__sorting-arrow"
+          width="7"
+          height="4"
+        >
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>
       </span>
-      {
-        showOptions && (
-          <ul className="places__options places__options--custom places__options--opened">
-            {
-              (Object.entries(Sorting) as [SortName, Sorting][]).map(([name, title]) => (
-                <li
-                  className={`places__option${name === activeSorting ? ' places__option--active' : ''}`}
-                  key={name}
-                  tabIndex={0}
-                  onClick={() => handleSortItemClick(name)}
-                >
-                  {title}
-                </li>
-              ))
-            }
-          </ul>
-        )
-      }
+      {showOptions && (
+        <ul className="places__options places__options--custom places__options--opened">
+          {(Object.entries(Sorting) as [SortName, Sorting][]).map(([name, title]) => (
+            <li
+              className={`places__option${name === activeSorting ? ' places__option--active' : ''}`}
+              key={name}
+              tabIndex={0}
+              onClick={() => handleSortItemClick(name)}
+            >
+              {title}
+            </li>
+          ))}
+        </ul>
+      )}
     </form>
   );
 };
