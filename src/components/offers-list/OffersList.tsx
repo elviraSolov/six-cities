@@ -36,32 +36,37 @@ const OffersList = (): JSX.Element => {
     return <Spinner />;
   }
 
+  if (offers.length === 0) {
+    return (
+      <div className="cities__places-container cities__places-container--empty container">
+        <section className="cities__no-places">
+          <div className="cities__status-wrapper tabs__content">
+            <b className="cities__status">No places to stay available</b>
+            <p className="cities__status-description">
+              We could not find any property available at the moment in {activeCity.name}
+            </p>
+          </div>
+        </section>
+        <div className="cities__right-section"></div>
+      </div>
+    );
+  }
   return (
     <div className="cities__places-container container">
-      {offers.length === 0 ? (
-        <div className="cities__places-container cities__places-container--empty container">
-          <section className="cities__no-places">
-            <div className="cities__status-wrapper tabs__content">
-              <b className="cities__status">No places to stay available</b>
-              <p className="cities__status-description">
-                We could not find any property available at the moment in {activeCity.name}
-              </p>
-            </div>
-          </section>
-          <div className="cities__right-section"></div>
-        </div>
-      ) : (
-        <section className="cities__places places">
-          <h2 className="visually-hidden">Places</h2>
-          <b className="places__found">
-            {offers.length} places to stay in {activeCity.name}
-          </b>
-          <SortingList
-            onChange={onSortingChange}
-            activeSorting={activeSorting}
-          />
-          <div className="cities__places-list places__list tabs__content">
-            {offers.map((offer) => (
+      <section className="cities__places places">
+        <h2 className="visually-hidden">Places</h2>
+        <b className="places__found">
+          {offers.filter((offer) => offer.city.name === activeCity.name).length} places to stay in{' '}
+          {activeCity.name}
+        </b>
+        <SortingList
+          onChange={onSortingChange}
+          activeSorting={activeSorting}
+        />
+        <div className="cities__places-list places__list tabs__content">
+          {offers
+            .filter((offer) => offer.city.name === activeCity.name)
+            .map((offer) => (
               <OfferCard
                 key={offer.id}
                 {...offer}
@@ -69,9 +74,9 @@ const OffersList = (): JSX.Element => {
                 onMouseLeave={handleCardMouseLeave}
               />
             ))}
-          </div>
-        </section>
-      )}
+        </div>
+      </section>
+
       <Map
         city={activeCity}
         points={offers.map(({ id, location }) => ({ id, ...location }))}

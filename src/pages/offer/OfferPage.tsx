@@ -8,10 +8,20 @@ import Spinner from '@components/spinner/Spinner';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch } from '@hooks/useAppDispatch';
 import { fetchComments, fetchNearbyOffers, fetchOffer, postComment } from '@store/action';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { CommentAuth } from 'types/types';
 
 const OfferPage = (): JSX.Element | null => {
+  const [activeOffer, setActiveOffer] = useState<number | null>(null);
+
+  const handleCardMouseMove = (id: number) => {
+    setActiveOffer(id);
+  };
+
+  const handleCardMouseLeave = () => {
+    setActiveOffer(null);
+  };
+
   const params = useParams();
 
   const dispatch = useAppDispatch();
@@ -63,9 +73,11 @@ const OfferPage = (): JSX.Element | null => {
     location,
   } = offer;
 
-  const handleCardMouseMove = (id: number) => id;
-
-  const handleCardMouseLeave = () => '';
+  const locations = nearbyOffers.map(({ id: nearbyId, location: nearbyLocation }) => ({
+    id: nearbyId,
+    ...nearbyLocation,
+  }));
+  locations.push({ id, ...location });
 
   return (
     <body>
@@ -164,7 +176,8 @@ const OfferPage = (): JSX.Element | null => {
             </div>
             <Map
               city={city}
-              points={[location]}
+              points={locations}
+              activeOffer={activeOffer}
               mapClass={'property__map'}
             />
           </section>
@@ -172,10 +185,10 @@ const OfferPage = (): JSX.Element | null => {
             <section className="near-places places">
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
               <div className="near-places__list places__list">
-                {nearbyOffers.map((item) => (
+                {nearbyOffers.map((offer) => (
                   <OfferCard
-                    key={item.id}
-                    {...item}
+                    key={offer.id}
+                    {...offer}
                     onMouseMove={handleCardMouseMove}
                     onMouseLeave={handleCardMouseLeave}
                   />
