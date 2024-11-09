@@ -1,4 +1,3 @@
-// import { Offer, State } from 'types/types';
 import ReviewsList from '@components/reviews-list/ReviewsList';
 import Map from '@components/map/Map';
 import OfferCard from '@components/offers-list/offer-card/OfferCard';
@@ -10,6 +9,7 @@ import { useAppDispatch } from '@hooks/useAppDispatch';
 import { fetchComments, fetchNearbyOffers, fetchOffer, postComment } from '@store/action';
 import { useEffect, useState } from 'react';
 import { CommentAuth } from 'types/types';
+import { getComments, getIsOfferLoading, getNearbyOffers, getOffer } from '@store/site-data/selectors';
 
 const OfferPage = (): JSX.Element | null => {
   const [activeOffer, setActiveOffer] = useState<number | null>(null);
@@ -26,10 +26,10 @@ const OfferPage = (): JSX.Element | null => {
 
   const dispatch = useAppDispatch();
 
-  const isOfferLoading = useAppSelector((state) => state.isOfferLoading);
-  const offer = useAppSelector((state) => state.offer);
-  const nearbyOffers = useAppSelector((state) => state.nearbyOffers);
-  const comments = useAppSelector((state) => state.comments);
+  const isOfferLoading = useAppSelector(getIsOfferLoading);
+  const offer = useAppSelector(getOffer);
+  const nearbyOffers = useAppSelector(getNearbyOffers);
+  const comments = useAppSelector(getComments);
 
   const onFormSubmit = (formData: Omit<CommentAuth, 'id'>) => {
     dispatch(postComment({ id, ...formData }));

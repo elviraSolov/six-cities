@@ -1,5 +1,5 @@
 import store from '@store/store';
-import { cities, offerType, Sorting } from '@const';
+import { AuthorizationStatus, cities, Sorting } from '@const';
 
 export type CityName = (typeof cities)[number];
 
@@ -58,3 +58,22 @@ export type SortName = keyof typeof Sorting;
 
 export type State = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+
+export type SiteData = {
+  offers: Offer[];
+  isOffersLoading: boolean;
+  offer: Offer | null;
+  isOfferLoading: boolean;
+  nearbyOffers: Offer[];
+  comments: Comment[];
+};
+
+export type SiteProcess = {
+  city: City;
+  sorting: SortName;
+};
+
+export type UserProcess = {
+  authorizationStatus: AuthorizationStatus;
+  user: User['email'];
+};

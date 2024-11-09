@@ -3,6 +3,7 @@ import ReviewItem from './review-item/ReviewItem';
 import CommentForm from '@components/comment-form/CommentForm';
 import { useAppSelector } from '@hooks/useAppSelector';
 import { AuthorizationStatus } from '@const';
+import { getAuthorizationStatus } from '@store/user-process/selectors';
 
 type ReviewsListProps = {
   comments: Comment[];
@@ -10,7 +11,7 @@ type ReviewsListProps = {
 };
 
 const ReviewsList = ({ comments, onSubmit }: ReviewsListProps): JSX.Element => {
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   if (comments.length === 0) {
     return (
@@ -26,10 +27,10 @@ const ReviewsList = ({ comments, onSubmit }: ReviewsListProps): JSX.Element => {
         Reviews &middot; <span className="reviews__amount">{comments.length}</span>
       </h2>
       <ul className="reviews__list">
-        {comments.map((comment: Comment) => (
+        {comments.map((comment) => (
           <ReviewItem
-            key={comment.id}
-            comment={comment}
+            key={(comment as { id: number }).id}
+            {...comment}
           />
         ))}
       </ul>

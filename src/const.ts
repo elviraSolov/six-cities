@@ -18,6 +18,28 @@ export enum HttpCode {
   NotFound = 404,
 }
 
+export enum Sorting {
+  Popular = 'Popular',
+  PriceIncrease = 'Price: low to high',
+  PriceDecrease = 'Price: high to low',
+  TopRated = 'Top rated first',
+}
+
+export enum ApiRoute {
+  Offers = '/hotels',
+  Login = '/login',
+  Comments = '/comments',
+}
+
+export enum StoreSlice {
+  // данные о предложениях, отзывах и т.п.
+  SiteData = 'SITE_DATA',
+  // данные о процессах, происходящих на сайте (типы сортировок, текущий активный город)
+  SiteProcess = 'SITE_PROCESS',
+  // данные о процессах, которые касаются пользователя (авторизация, данные о пользователе)
+  UserProcess = 'USER_PROCESS',
+}
+
 export const cities = ['Paris', 'Cologne', 'Brussels', 'Amsterdam', 'Hamburg', 'Dusseldorf'];
 
 export const cityLocation: { [key in CityName]: Location } = {
@@ -73,16 +95,3 @@ export const months = [
 export const URL_MARKER_DEFAULT = 'img/pin.svg';
 
 export const URL_MARKER_CURRENT = 'img/pin-active.svg';
-
-export enum Sorting {
-  Popular = 'Popular',
-  PriceIncrease = 'Price: low to high',
-  PriceDecrease = 'Price: high to low',
-  TopRated = 'Top rated first',
-}
-
-export enum ApiRoute {
-  Offers = '/hotels',
-  Login = '/login',
-  Comments = '/comments',
-}

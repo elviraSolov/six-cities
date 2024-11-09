@@ -5,20 +5,21 @@ import { useAppSelector } from '@hooks/useAppSelector';
 import SortingList from '@components/sorting-list/SortingList';
 import { setOffersSorting } from '@store/action';
 import { useAppDispatch } from '@hooks/useAppDispatch';
-import { State, SortName } from 'types/types';
+import { SortName } from 'types/types';
 import Spinner from '@components/spinner/Spinner';
+import { getCity, getSorting } from '@store/site-process/selectors';
+import { getIsOffersLoading, getOffers } from '@store/site-data/selectors';
 
 const OffersList = (): JSX.Element => {
-  const activeCity = useAppSelector((state: State) => state.city);
-  const offers = useAppSelector((state: State) => state.offers);
-  // eslint-disable-next-line
-  const activeSorting = useAppSelector((state: State): SortName => state.sorting as SortName);
+  const activeCity = useAppSelector(getCity);
+  const offers = useAppSelector(getOffers);
+  const activeSorting = useAppSelector(getSorting);
 
   const dispatch = useAppDispatch();
 
   const [activeOffer, setActiveOffer] = useState<number | null>(null);
 
-  const isOffersLoading = useAppSelector((state) => state.isOffersLoading);
+  const isOffersLoading = useAppSelector(getIsOffersLoading);
 
   const handleCardMouseMove = (id: number) => {
     setActiveOffer(id);
