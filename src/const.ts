@@ -1,4 +1,4 @@
-import { CityName, Location } from 'types/types';
+import { CityName, Location, Offer, SortName } from 'types/types';
 
 export enum AuthorizationStatus {
   Auth = 'AUTH',
@@ -25,6 +25,15 @@ export enum Sorting {
   TopRated = 'Top rated first',
 }
 
+export const Comparator: {
+  [key in SortName]: (a: Offer, b: Offer) => number;
+} = {
+  Popular: () => 0,
+  PriceIncrease: (a, b) => a.price - b.price,
+  PriceDecrease: (a, b) => b.price - a.price,
+  TopRated: (a, b) => b.rating - a.rating,
+};
+
 export enum ApiRoute {
   Offers = '/hotels',
   Login = '/login',
@@ -32,11 +41,8 @@ export enum ApiRoute {
 }
 
 export enum StoreSlice {
-  // данные о предложениях, отзывах и т.п.
   SiteData = 'SITE_DATA',
-  // данные о процессах, происходящих на сайте (типы сортировок, текущий активный город)
   SiteProcess = 'SITE_PROCESS',
-  // данные о процессах, которые касаются пользователя (авторизация, данные о пользователе)
   UserProcess = 'USER_PROCESS',
 }
 

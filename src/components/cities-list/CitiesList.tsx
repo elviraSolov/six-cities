@@ -5,14 +5,15 @@ import { useAppDispatch } from '@hooks/useAppDispatch';
 import { CityName } from 'types/types';
 import { getCity } from '@store/site-process/selectors';
 import { setCity } from '@store/site-process/siteProcess';
+import { useCallback } from 'react';
 
 const CitiesList = (): JSX.Element => {
   const activeCity = useAppSelector(getCity);
   const dispatch = useAppDispatch();
 
-  const handleClick = (cityName: CityName) => {
+  const handleClick = useCallback((cityName: CityName) => {
     dispatch(setCity(cityName));
-  };
+  }, []);
 
   return (
     <section className="locations container">

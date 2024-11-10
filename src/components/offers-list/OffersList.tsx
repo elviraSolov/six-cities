@@ -8,11 +8,11 @@ import { useAppDispatch } from '@hooks/useAppDispatch';
 import { SortName } from 'types/types';
 import Spinner from '@components/spinner/Spinner';
 import { getCity, getSorting } from '@store/site-process/selectors';
-import { getIsOffersLoading, getOffers } from '@store/site-data/selectors';
+import { getIsOffersLoading, selectOffers } from '@store/site-data/selectors';
 
 const OffersList = (): JSX.Element => {
   const activeCity = useAppSelector(getCity);
-  const offers = useAppSelector(getOffers);
+  const offers = useAppSelector(selectOffers);
   const activeSorting = useAppSelector(getSorting);
 
   const dispatch = useAppDispatch();
