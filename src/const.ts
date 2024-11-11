@@ -1,4 +1,4 @@
-import { CityName, Location, Offer, SortName } from 'types/types';
+import { CityName, Location, Offer as OfferType, SortName } from 'types/types';
 
 export enum AuthorizationStatus {
   Auth = 'AUTH',
@@ -26,7 +26,7 @@ export enum Sorting {
 }
 
 export const Comparator: {
-  [key in SortName]: (a: Offer, b: Offer) => number;
+  [key in SortName]: (a: OfferType, b: OfferType) => number;
 } = {
   Popular: () => 0,
   PriceIncrease: (a, b) => a.price - b.price,
@@ -37,6 +37,7 @@ export const Comparator: {
 export enum ApiRoute {
   Offers = '/hotels',
   Login = '/login',
+  Logout = '/logout',
   Comments = '/comments',
   Favorite = '/favorite',
 }

@@ -14,7 +14,8 @@ export const Action = {
   SET_CITY: 'city/set',
   FETCH_OFFERS: 'offers/fetch',
   SET_OFFERS_SORTING: 'offers/set',
-  LOGIN_USER: 'uder/login',
+  LOGIN_USER: 'user/login',
+  LOGOUT_USER: 'user/logout',
   FETCH_USER_STATUS: 'user/fetch-status',
   FETCH_OFFER: 'offer/fetch',
   FETCH_NEARBY_OFFERS: 'offers/fetch-nearby',
@@ -55,6 +56,15 @@ export const loginUser = createAsyncThunk<UserAuth['email'], UserAuth, { extra: 
     // history.push(AppRoute.Root);
 
     return email;
+  },
+);
+
+export const logoutUser = createAsyncThunk<void, undefined, { extra: AxiosInstance }>(
+  Action.LOGOUT_USER,
+  async (_, { extra: api }) => {
+    await api.delete(ApiRoute.Logout);
+
+    Token.drop();
   },
 );
 

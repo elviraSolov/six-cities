@@ -4,11 +4,20 @@ import { Link } from 'react-router-dom';
 import { getAuthorizationStatus, getUser } from '../../store/user-process/selectors';
 import { getFavoriteOffers } from '@store/site-data/selectors';
 import { memo } from 'react';
+import { logoutUser } from '@store/action';
+import { useAppDispatch } from '@hooks/useAppDispatch';
 
 const Header = () => {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const user = useAppSelector(getUser);
   const favoriteOffers = useAppSelector(getFavoriteOffers);
+  const dispatch = useAppDispatch();
+
+  const handleLogoutClick = () => {
+    if (authorizationStatus === AuthorizationStatus.Auth) {
+      dispatch(logoutUser());
+    }
+  };
 
   return (
     <header className="header">
@@ -46,6 +55,7 @@ const Header = () => {
                 <Link
                   className="header__nav-link"
                   to={AppRoute.Login}
+                  onClick={handleLogoutClick}
                 >
                   <span className="header__signout">
                     {authorizationStatus === AuthorizationStatus.Auth ? 'Sign out' : 'Sign in'}

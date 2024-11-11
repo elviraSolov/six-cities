@@ -139,7 +139,12 @@ const OfferPage = (): JSX.Element | null => {
                   <h2 className="property__inside-title">What&apos;s inside</h2>
                   <ul className="property__inside-list">
                     {goods.map((good) => (
-                      <li className="property__inside-item">{good}</li>
+                      <li
+                        className="property__inside-item"
+                        key={good}
+                      >
+                        {good}
+                      </li>
                     ))}
                   </ul>
                 </div>
@@ -179,9 +184,9 @@ const OfferPage = (): JSX.Element | null => {
             <section className="near-places places">
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
               <div className="near-places__list places__list">
-                {nearbyOffers.map((offer) => (
+                {nearbyOffers.map((item) => (
                   <OfferCard
-                    key={offer.id}
+                    key={item.id}
                     {...offer}
                     onMouseMove={handleCardMouseMove}
                     onMouseLeave={handleCardMouseLeave}
