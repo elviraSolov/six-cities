@@ -20,10 +20,10 @@ export const siteProcess = createSlice({
         location: cityLocation[action.payload],
       };
     },
-    setSorting: (state, action: PayloadAction<SortName>) => {
+    setOffersSorting: (state, action: PayloadAction<SortName>) => {
       state.sorting = action.payload;
     },
   },
 });
 
-export const { setCity, setSorting } = siteProcess.actions;
+export const { setCity, setOffersSorting } = siteProcess.actions;
