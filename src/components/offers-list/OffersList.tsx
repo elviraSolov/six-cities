@@ -22,6 +22,8 @@ const OffersList = (): JSX.Element => {
 
   const isOffersLoading = useAppSelector(getIsOffersLoading);
 
+  const isEmpty = offers.length === 0;
+
   const handleCardMouseMove = (id: number) => {
     setActiveOffer(id);
   };
@@ -38,7 +40,7 @@ const OffersList = (): JSX.Element => {
     return <Spinner />;
   }
 
-  if (offers.length === 0) {
+  if (isEmpty) {
     return <OffersListEmpty city={activeCity.name} />;
   }
 

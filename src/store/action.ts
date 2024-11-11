@@ -1,7 +1,7 @@
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
-import { AxiosInstance } from 'axios';
-import { Offer, SortName, CityName, User, UserAuth, CommentAuth } from 'types/types';
-import { ApiRoute } from '@const';
+import { AxiosError, AxiosInstance } from 'axios';
+import { Offer, SortName, CityName, User, UserAuth, CommentAuth, FavoriteAuth } from 'types/types';
+import { ApiRoute, AppRoute, HttpCode } from '@const';
 import { Token } from '@utils';
 // import { History } from 'history';
 
@@ -20,6 +20,8 @@ export const Action = {
   FETCH_NEARBY_OFFERS: 'offers/fetch-nearby',
   FETCH_COMMENTS: 'offer/fetch-comments',
   POST_COMMENT: 'offer/post-comment',
+  FETCH_FAVORITE_OFFERS: 'offers/fetch-favorite',
+  POST_FAVORITE: 'offer/post-favorite',
 };
 
 export const setCity = createAction<CityName>(Action.SET_CITY);
@@ -103,5 +105,33 @@ export const postComment = createAsyncThunk<Comment[], CommentAuth, { extra: Axi
     const { data } = await api.post<Comment[]>(`${ApiRoute.Comments}/${id}`, { comment, rating });
 
     return data;
+  },
+);
+
+export const fetchFavoriteOffers = createAsyncThunk<Offer[], undefined, { extra: AxiosInstance }>(
+  Action.FETCH_FAVORITE_OFFERS,
+  async (_, { extra: api }) => {
+    const { data } = await api.get<Offer[]>(ApiRoute.Favorite);
+
+    return data;
+  },
+);
+
+export const postFavorite = createAsyncThunk<Offer, FavoriteAuth, { extra: AxiosInstance }>(
+  Action.POST_FAVORITE,
+  async ({ id, status }, { extra: api }) => {
+    try {
+      const { data } = await api.post<Offer>(`${ApiRoute.Favorite}/${id}/${status}`);
+
+      return data;
+    } catch (error) {
+      // const axiosError = error as AxiosError;
+
+      // if (axiosError.response?.status === HttpCode.NoAuth) {
+      //   history.push(AppRoute.Login);
+      // }
+
+      return Promise.reject(error);
+    }
   },
 );

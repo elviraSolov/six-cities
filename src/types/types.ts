@@ -66,6 +66,8 @@ export type SiteData = {
   isOfferLoading: boolean;
   nearbyOffers: Offer[];
   comments: Comment[];
+  favoriteOffers: Offer[];
+  isFavoriteOffersLoading: boolean;
 };
 
 export type SiteProcess = {
@@ -77,3 +79,5 @@ export type UserProcess = {
   authorizationStatus: AuthorizationStatus;
   user: User['email'];
 };
+
+export type FavoriteAuth = Pick<Offer, 'id'> & { status: 1 | 0 };

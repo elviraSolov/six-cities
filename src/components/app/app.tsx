@@ -29,7 +29,7 @@ const App = (): JSX.Element => (
         path={AppRoute.Favorites}
         element={
           <PrivateRoute>
-            <FavoritesPage offers={[]} />
+            <FavoritesPage />
           </PrivateRoute>
         }
       />

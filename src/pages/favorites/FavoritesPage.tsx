@@ -3,13 +3,15 @@ import OfferCard from '@components/offers-list/offer-card/OfferCard';
 import { Offer } from 'types/types';
 import { Link } from 'react-router-dom';
 import Header from '@components/header/Header';
+import { useAppSelector } from '@hooks/useAppSelector';
+import { getFavoriteOffers, getIsFavoriteOffersLoading } from '@store/site-data/selectors';
+import Spinner from '@components/spinner/Spinner';
 
-type FavoritesProps = {
-  offers: Offer[];
-};
+const FavoritesPage = (): JSX.Element => {
+  const isFavoriteOffersLoading = useAppSelector(getIsFavoriteOffersLoading);
+  const favoriteOffers = useAppSelector(getFavoriteOffers);
 
-const FavoritesPage = ({ offers }: FavoritesProps): JSX.Element => {
-  const offersByCity = offers.reduce<{ [key: string]: Offer[] }>((acc, curr) => {
+  const offersByCity = favoriteOffers.reduce<{ [key: string]: Offer[] }>((acc, curr) => {
     if (curr.isFavorite) {
       const city = curr.city.name;
 
@@ -33,6 +35,10 @@ const FavoritesPage = ({ offers }: FavoritesProps): JSX.Element => {
   const handleCardMouseLeave = () => {
     setActiveOffer(null);
   };
+
+  if (isFavoriteOffersLoading) {
+    return <Spinner />;
+  }
 
   return (
     <body>

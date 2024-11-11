@@ -38,6 +38,7 @@ export enum ApiRoute {
   Offers = '/hotels',
   Login = '/login',
   Comments = '/comments',
+  Favorite = '/favorite',
 }
 
 export enum StoreSlice {
