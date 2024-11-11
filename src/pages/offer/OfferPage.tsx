@@ -187,7 +187,7 @@ const OfferPage = (): JSX.Element | null => {
                 {nearbyOffers.map((item) => (
                   <OfferCard
                     key={item.id}
-                    {...offer}
+                    {...item}
                     onMouseMove={handleCardMouseMove}
                     onMouseLeave={handleCardMouseLeave}
                   />
