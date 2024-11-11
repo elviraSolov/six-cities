@@ -2,10 +2,13 @@ import { AppRoute, AuthorizationStatus } from '@const';
 import { useAppSelector } from '@hooks/useAppSelector';
 import { Link } from 'react-router-dom';
 import { getAuthorizationStatus, getUser } from '../../store/user-process/selectors';
+import { getFavoriteOffers } from '@store/site-data/selectors';
+import { memo } from 'react';
 
 const Header = () => {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const user = useAppSelector(getUser);
+  const favoriteOffers = useAppSelector(getFavoriteOffers);
 
   return (
     <header className="header">
@@ -35,7 +38,7 @@ const Header = () => {
                   >
                     <div className="header__avatar-wrapper user__avatar-wrapper"></div>
                     <span className="header__user-name user__name">{user}</span>
-                    <span className="header__favorite-count">3</span>
+                    <span className="header__favorite-count">{favoriteOffers.length}</span>
                   </Link>
                 </li>
               )}
@@ -57,4 +60,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default memo(Header);

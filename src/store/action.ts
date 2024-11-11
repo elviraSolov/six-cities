@@ -1,7 +1,7 @@
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
-import { AxiosError, AxiosInstance } from 'axios';
+import { AxiosInstance } from 'axios';
 import { Offer, SortName, CityName, User, UserAuth, CommentAuth, FavoriteAuth } from 'types/types';
-import { ApiRoute, AppRoute, HttpCode } from '@const';
+import { ApiRoute } from '@const';
 import { Token } from '@utils';
 // import { History } from 'history';
 
