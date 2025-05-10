@@ -90,7 +90,7 @@ const OfferPage = (): JSX.Element | null => {
           <section className="property">
             <div className="property__gallery-container container">
               <div className="property__gallery">
-                {images.map((image: string) => (
+                {images?.map((image: string) => (
                   <div
                     key={image}
                     className="property__image-wrapper"
@@ -115,7 +115,7 @@ const OfferPage = (): JSX.Element | null => {
                   <h1 className="property__name">{title}</h1>
                   <Bookmark
                     id={id}
-                    isActive={isFavorite}
+                    isActive={isFavorite ?? false}
                     place="property"
                   />
                 </div>
@@ -138,7 +138,7 @@ const OfferPage = (): JSX.Element | null => {
                 <div className="property__inside">
                   <h2 className="property__inside-title">What&apos;s inside</h2>
                   <ul className="property__inside-list">
-                    {goods.map((good) => (
+                    {goods?.map((good) => (
                       <li
                         className="property__inside-item"
                         key={good}
@@ -160,8 +160,8 @@ const OfferPage = (): JSX.Element | null => {
                         alt="Host avatar"
                       />
                     </div>
-                    <span className="property__user-name">{host.name}</span>
-                    {host.isPro && <span className="property__user-status">Pro</span>}
+                    <span className="property__user-name">{host?.name}</span>
+                    {host?.isPro && <span className="property__user-status">Pro</span>}
                   </div>
                   <div className="property__description">
                     <p className="property__text">{description}</p>

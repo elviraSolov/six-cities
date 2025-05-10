@@ -28,9 +28,9 @@ const ReviewItem = ({ comment, date, rating, user }: Comment): JSX.Element => (
       <p className="reviews__text">{comment}</p>
       <time
         className="reviews__time"
-        dateTime={date as string}
+        dateTime={date}
       >
-        {formatDate(date as string)}
+        {formatDate(date)}
       </time>
     </div>
   </li>

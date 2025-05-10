@@ -1,5 +1,5 @@
 import { Token } from '@utils';
-import axios, { AxiosInstance } from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 
 const BACKEND_URL = 'https://10.react.htmlacademy.pro/six-cities';
 const REQUEST_TIMEOUT = 5000;
@@ -10,17 +10,13 @@ export const createApi = (): AxiosInstance => {
     timeout: REQUEST_TIMEOUT,
   });
 
-  // FIXME: config :AxiosRequestConfig
-  // eslint-disable-next-line
-  api.interceptors.request.use((config: any) => {
+  api.interceptors.request.use((config: AxiosRequestConfig) => {
     const token = Token.get();
 
-    if (token) {
-      // eslint-disable-next-line
+    if (config.headers) {
       config.headers['x-token'] = token;
     }
 
-    // eslint-disable-next-line
     return config;
   });
 

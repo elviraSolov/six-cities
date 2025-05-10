@@ -18,19 +18,22 @@ export type Offer = {
   id: number;
   price: number;
   rating: number;
-  title: string;
-  isPremium: boolean;
-  isFavorite: boolean;
+  title?: string;
+  isPremium?: boolean;
+  isFavorite?: boolean;
   city: City;
   location: Location;
   previewImage: string;
-  type: 'apartment' | 'room' | 'house' | 'hotel';
-  bedrooms: number;
-  description: string;
-  goods: [string];
-  host: User;
-  images: [string];
-  maxAdults: number;
+  type: 'Apartment' | 'Room' | 'House' | 'Hotel';
+  bedrooms?: number;
+  description?: string;
+  goods?: [string];
+  host?: User;
+  images?: [string];
+  maxAdults?: number;
+  name: string;
+  isBookmark?: boolean;
+  reviews: any;
 };
 
 export type User = {

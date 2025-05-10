@@ -1,14 +1,14 @@
 import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
-import { AxiosInstance } from 'axios';
-import { Offer, SortName, CityName, User, UserAuth, CommentAuth, FavoriteAuth } from 'types/types';
-import { ApiRoute } from '@const';
+import { AxiosError, AxiosInstance } from 'axios';
+import { Offer, SortName, CityName, User, UserAuth, CommentAuth, FavoriteAuth, Comment } from 'types/types';
+import { ApiRoute, AppRoute, HttpCode } from '@const';
 import { Token } from '@utils';
-// import { History } from 'history';
+import { History } from 'history';
 
-// type Extra = {
-//   api: AxiosInstance;
-//   history: History;
-// };
+type Extra = {
+  api: AxiosInstance;
+  history: History;
+};
 
 export const Action = {
   SET_CITY: 'city/set',
@@ -29,118 +29,127 @@ export const setCity = createAction<CityName>(Action.SET_CITY);
 export const setOffers = createAction<Offer[]>(Action.FETCH_OFFERS);
 export const setOffersSorting = createAction<SortName>(Action.SET_OFFERS_SORTING);
 
-export const fetchOffers = createAsyncThunk(Action.FETCH_OFFERS, async (_, thunkAPI) => {
-  const axios = thunkAPI.extra as AxiosInstance;
-  const { data } = await axios.get<Offer[]>(ApiRoute.Offers);
+export const fetchOffers = createAsyncThunk<Offer[], undefined, { extra: Extra }>(
+  Action.FETCH_OFFERS,
+  async (_, { extra }) => {
+    const { api } = extra;
+    const { data } = await api.get<Offer[]>(ApiRoute.Offers);
 
-  return data;
-});
+    return data;
+  },
+);
 
-export const fetchUserStatus = createAsyncThunk<User, undefined, { extra: AxiosInstance }>(
+export const fetchUserStatus = createAsyncThunk<User, undefined, { extra: Extra }>(
   Action.FETCH_USER_STATUS,
-  async (_, { extra: api }) => {
+  async (_, { extra }) => {
+    const { api } = extra;
     const { data } = await api.get<User>(ApiRoute.Login);
 
     return data;
   },
 );
 
-export const loginUser = createAsyncThunk<UserAuth['email'], UserAuth, { extra: AxiosInstance }>(
+export const loginUser = createAsyncThunk<UserAuth['email'], UserAuth, { extra: Extra }>(
   Action.LOGIN_USER,
-  async ({ email, password }, { extra: api }) => {
-    const { data } = await api.post<User>(ApiRoute.Login, { email, password });
-    const { token } = data;
+  async ({ email, password }, { extra }) => {
+    // eslint-disable-next-line
+    const { api, history } = extra;
 
-    Token.save(token);
-    // TODO: добавить возврат на предыдущую страницу при успешной авторизации
-    // history.push(AppRoute.Root);
+    await api.post<User>(ApiRoute.Login, { email, password }).then((data) => {
+      if (data?.status === HttpCode.Success) {
+        // eslint-disable-next-line
+        history.push(AppRoute.Root);
+        Token.save(data.data.token);
+      }
+    });
 
     return email;
   },
 );
 
-export const logoutUser = createAsyncThunk<void, undefined, { extra: AxiosInstance }>(
+export const logoutUser = createAsyncThunk<void, undefined, { extra: Extra }>(
   Action.LOGOUT_USER,
-  async (_, { extra: api }) => {
+  async (_, { extra }) => {
+    const { api } = extra;
     await api.delete(ApiRoute.Logout);
 
     Token.drop();
   },
 );
 
-export const fetchOffer = createAsyncThunk<Offer, Offer['id'], { extra: AxiosInstance }>(
+export const fetchOffer = createAsyncThunk<Offer, Offer['id'], { extra: Extra }>(
   Action.FETCH_OFFER,
-  async (id, { extra: api }) => {
-    // const { data } = await api.get<Offer>(`${ApiRoute.Offers}/${id}`);
+  async (id, { extra }) => {
+    // eslint-disable-next-line
+    const { api, history } = extra;
 
-    // return data;
     try {
       const { data } = await api.get<Offer>(`${ApiRoute.Offers}/${id}`);
 
       return data;
     } catch (error) {
-      // const axiosError = error as AxiosError;
+      const axiosError = error as AxiosError;
 
-      // TODO: добавить возврат на предыдущую страницу при успешной авторизации
-      // if (axiosError.response?.status === HttpCode.NotFound) {
-      //   history.pushState(AppRoute.NotFound);
-      // }
+      if (axiosError.response?.status === HttpCode.NotFound) {
+        // eslint-disable-next-line
+        history.push(AppRoute.NotFound);
+      }
 
+      // eslint-disable-next-line
       return Promise.reject(error);
     }
   },
 );
 
-export const fetchNearbyOffers = createAsyncThunk<Offer[], Offer['id'], { extra: AxiosInstance }>(
+export const fetchNearbyOffers = createAsyncThunk<Offer[], Offer['id'], { extra: Extra }>(
   Action.FETCH_NEARBY_OFFERS,
-  async (id, { extra: api }) => {
+  async (id, { extra }) => {
+    const { api } = extra;
     const { data } = await api.get<Offer[]>(`${ApiRoute.Offers}/${id}/nearby`);
 
     return data;
   },
 );
 
-export const fetchComments = createAsyncThunk<Comment[], Offer['id'], { extra: AxiosInstance }>(
+export const fetchComments = createAsyncThunk<Comment[], Offer['id'], { extra: Extra }>(
   Action.FETCH_COMMENTS,
-  async (id, { extra: api }) => {
+  async (id, { extra }) => {
+    const { api } = extra;
     const { data } = await api.get<Comment[]>(`${ApiRoute.Comments}/${id}`);
 
     return data;
   },
 );
 
-export const postComment = createAsyncThunk<Comment[], CommentAuth, { extra: AxiosInstance }>(
+export const postComment = createAsyncThunk<Comment[], CommentAuth, { extra: Extra }>(
   Action.POST_COMMENT,
-  async ({ id, comment, rating }, { extra: api }) => {
+  async ({ id, comment, rating }, { extra }) => {
+    const { api } = extra;
     const { data } = await api.post<Comment[]>(`${ApiRoute.Comments}/${id}`, { comment, rating });
 
     return data;
   },
 );
 
-export const fetchFavoriteOffers = createAsyncThunk<Offer[], undefined, { extra: AxiosInstance }>(
+export const fetchFavoriteOffers = createAsyncThunk<Offer[], undefined, { extra: Extra }>(
   Action.FETCH_FAVORITE_OFFERS,
-  async (_, { extra: api }) => {
+  async (_, { extra }) => {
+    const { api } = extra;
     const { data } = await api.get<Offer[]>(ApiRoute.Favorite);
 
     return data;
   },
 );
 
-export const postFavorite = createAsyncThunk<Offer, FavoriteAuth, { extra: AxiosInstance }>(
+export const postFavorite = createAsyncThunk<Offer, FavoriteAuth, { extra: Extra }>(
   Action.POST_FAVORITE,
-  async ({ id, status }, { extra: api }) => {
+  async ({ id, status }, { extra }) => {
+    const { api } = extra;
     try {
       const { data } = await api.post<Offer>(`${ApiRoute.Favorite}/${id}/${status}`);
 
       return data;
     } catch (error) {
-      // const axiosError = error as AxiosError;
-
-      // if (axiosError.response?.status === HttpCode.NoAuth) {
-      //   history.push(AppRoute.Login);
-      // }
-
       return Promise.reject(error);
     }
   },

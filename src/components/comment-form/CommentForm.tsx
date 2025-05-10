@@ -85,6 +85,7 @@ const CommentForm = ({ onSubmit }: FormProps) => {
         <button
           className="reviews__submit form__submit button"
           type="submit"
+          disabled={review.length < 50 || rating === 0}
         >
           Submit
         </button>

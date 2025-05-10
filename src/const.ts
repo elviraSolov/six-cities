@@ -16,6 +16,7 @@ export enum AppRoute {
 
 export enum HttpCode {
   NotFound = 404,
+  Success = 200,
 }
 
 export enum Sorting {

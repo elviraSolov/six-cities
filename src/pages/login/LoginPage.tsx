@@ -13,7 +13,8 @@ const LoginPage = (): JSX.Element => {
     const form = event.currentTarget;
 
     const formData = new FormData(form) as Iterable<[UserAuth]>;
-    const data = Object.fromEntries(formData);
+    // eslint-disable-next-line
+    const data: UserAuth = Object.fromEntries(formData);
 
     dispatch(loginUser(data));
   };

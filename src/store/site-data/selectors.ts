@@ -1,5 +1,5 @@
 import type { State, Offer, Comment } from 'types/types';
-import { Comparator, Sorting, StoreSlice } from '@const';
+import { Comparator, StoreSlice } from '@const';
 import { getCity, getSorting } from '@store/site-process/selectors';
 import { createSelector } from '@reduxjs/toolkit';
 

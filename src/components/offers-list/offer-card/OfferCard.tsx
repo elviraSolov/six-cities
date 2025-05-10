@@ -65,7 +65,7 @@ const OfferCard = ({
             </div>
             <Bookmark
               id={id}
-              isActive={isFavorite}
+              isActive={isFavorite ?? false}
             />
           </div>
           <div className="place-card__rating rating">
